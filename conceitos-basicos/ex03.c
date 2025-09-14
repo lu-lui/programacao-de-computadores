@@ -1,0 +1,1 @@
+/*3. Escreva um programa para ler uma temperatura em graus Fahrenheit, calcular e escrever o valor correspondente em graus Celsius. C / 5 = F - 32 / 9*/
