@@ -8,7 +8,7 @@ int main(){
     printf("Digite uma temperatura em  graus Fahrenheit: ");
     scanf("%f", &Fahrenheit);
 
-    Celsius = (Fahrenheit - 32) / 9;
+    Celsius = 5 * ((Fahrenheit - 32) / 9);
 
-    printf("A temperatura correspondente em Celsius e: %.2f", Celsius * 5);
+    printf("A temperatura correspondente em Celsius e: %.2f", Celsius);
 }

@@ -1,0 +1,4 @@
+/*23. O banco BANK Co. deseja utilizar o computador para determinar o limite da conta especial de seus clientes a partir do saldo da conta-corrente e da poupança. Escreva um programa para ler o saldo da conta-corrente e da poupança de um cliente e escrever o seguinte:
+- A mensagem: ‘SEM CONTA ESPECIAL’ se o cliente NÃO possuir o requisito necessário para a conta especial. (REQUISITO PARA POSSUIR CONTA ESPECIAL: o saldo em, pelo menos, uma das duas contas deve estar acima de R$1000,00)
+- O valor do limite da conta conforme especificação abaixo:
+* O valor limite da conta especial fornecido ao cliente deve ser o dobro do maior saldo (entre c.corrente e poupança) ou o triplo do menor saldo. Deve ser fornecido o valor de limite maior entre essas 2 situações. OBS: Considere que os saldos da c.corrente e poupança não são iguais.*/

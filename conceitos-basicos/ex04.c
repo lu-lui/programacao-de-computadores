@@ -5,10 +5,10 @@
 int main(){
     float Fahrenheit, Celsius;
 
-    printf("Digite uma temperatura em  graus Celsius: ");
+    printf("Digite uma temperatura em graus Celsius: ");
     scanf("%f", &Celsius);
 
-    Fahrenheit = Celsius / 5 * 9;
+    Fahrenheit = 32 + (Celsius / 5 * 9);
 
-    printf("A temperatura correspondente em Fahrenheit e: %.2f", Fahrenheit + 32);
+    printf("A temperatura correspondente em Fahrenheit e: %.2f", Fahrenheit);
 }

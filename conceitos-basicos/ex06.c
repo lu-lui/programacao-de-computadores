@@ -18,7 +18,7 @@ int main(){
     printf("Votos validos: ");
     scanf("%d", &validos);
 
-    porcentagem = eleitores 
+    porcentagem = eleitores; 
 
     printf("Porcentagem de votos validos: %f");
 }

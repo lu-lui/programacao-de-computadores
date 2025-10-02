@@ -1,0 +1,1 @@
+// 19. Escreva um programa que leia as medidas dos lados de um triângulo e escreva se ele é EQUILÁTERO, ISÓSCELES ou ESCALENO.

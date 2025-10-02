@@ -1,0 +1,3 @@
+/*18. Um posto está vendendo combustíveis com a tabela de descontos abaixo. Escreva um programa que leia o número de litros vendidos, o tipo de combustível (codificado da seguinte forma: 1-álcool 2-Gasolina), o preço do combustível, calcule e imprima o valor a ser pago pelo cliente.
+    Álcool: Até 20 litros, desconto de 3 % por litro. Acima de 20 litros, desconto de 5 % por litro.
+    Gasolina: Até 15 litros, desconto de 3,5 % por litro. Acima de 15 litros, desconto de 6 % por litro*/
