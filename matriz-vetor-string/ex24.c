@@ -1,0 +1,2 @@
+// 24. Escreva um programa para ler uma quantidade indeterminada de dupla de dados. O primeiro elemento da dupla é um dos seguintes caracteres: 'M','m', 'F' ou 'f' (não é necessário validar). O segundo é uma palavra de até 30 caracteres (considere que ela pode conter hífen). Converta cada palavra lida para maiúscula ou minúscula conforme o primeiro caractere (da dupla) informado seja 'M' (Maiúscula) ou 'm' (Minúscula). Imprimir cada palavra após a conversão. O programa termina quando o primeiro caractere informado (da dupla) for 'F' ou 'f'. 
+

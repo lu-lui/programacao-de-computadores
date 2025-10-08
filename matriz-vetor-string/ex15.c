@@ -1,0 +1,1 @@
+// 15. Ler uma matriz A de L linhas por C colunas. Gerar e imprimir uma matriz T transposta de A. 

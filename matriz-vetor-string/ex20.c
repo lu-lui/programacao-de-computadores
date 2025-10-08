@@ -1,0 +1,1 @@
+// Escreva um programa para ler uma quantidade indeterminada de frases (considere que cada frase possui no máximo 70 caracteres). Para cada frase imprima a quantidade de espaços em branco que ela contém. O programa se encerra quando for digitada uma frase que não contém espaços em branco.

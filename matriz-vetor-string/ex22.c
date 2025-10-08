@@ -1,0 +1,1 @@
+// 22. Escreva um programa para ler 5 frases (considere que cada frase possui no máximo 70 caracteres). Converter todas as letras minúsculas existentes na frase (somente as letras minúsculas) para maiúsculas. Imprimir cada frase após a conversão. 
