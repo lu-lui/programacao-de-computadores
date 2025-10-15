@@ -1,0 +1,1 @@
+//9. Escreva um programa em C para ler as notas de 2 avaliações de uma quantidade indeterminada de alunos. Calcular e escrever a média semestral de cada aluno. O programa deve ser encerrado ao ser fornecido para a nota da primeira avaliação um valor negativo (nesta situação a segunda nota não deve ser lida). 

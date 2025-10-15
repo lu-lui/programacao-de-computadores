@@ -1,0 +1,1 @@
+//23. Escreva um algoritmo que imprima todos os números primos existentes entre N1 e N2, onde N1 e N2 são números positivos fornecidos pelo usuário

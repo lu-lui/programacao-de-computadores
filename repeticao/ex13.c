@@ -1,0 +1,2 @@
+//  13. Reescreva o programa do exercício (triângulo equilátero, isósceles e escaleno) para que após a leitura dos dados ( a medida dos 3 lados do triângulo) seja impressa a mensagem “Os dados informados estão corretos (1.sim/2.não)?” solicitando ao usuário uma resposta. Caso a resposta seja 1 a execução deve continuar normalmente escrevendo o tipo de triângulo, caso contrário a leitura dos dados (a medida dos 3 lados) deverá ser repetida. 
+  
