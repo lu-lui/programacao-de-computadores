@@ -1,0 +1,1 @@
+//3. Dados três números inteiros correspondentes, respectivamente, ao dia, mês e ano de nascimento de uma pessoa e três outros números correspondentes ao dia, mês e ano corrente (ex. data de hoje), calcular e imprimir a idade em anos completos. Verificar se as datas são compatíveis (nascimento <= corrente).

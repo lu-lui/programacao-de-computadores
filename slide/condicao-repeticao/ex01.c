@@ -1,0 +1,1 @@
+//Escreva um programa que lê as coordenadas de n pontos no plano cartesiano (x, y) e identifica se estes pontos pertencem: i) ao 1o. quadrante; ii) ao 2o. quadrante; iii) ao 3o. quadrante; iv) ao quarto quadrante; ou estão sobre v) o eixo dos “x”; vi) o eixo dos “y”; ou vii) estão na origem. Feito isso, o programa escreverá os totais de pontos em cada uma destas situações.

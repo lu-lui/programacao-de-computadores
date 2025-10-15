@@ -1,0 +1,1 @@
+//2 Faça um programa que lê n x m valores decimais, armazenando-os em uma matriz com n linhas e m colunas. Após, para cada linha da matriz, o algoritmo calcula a média e conta quantos elementos estão acima da média calculada, imprimindo estas informações.
