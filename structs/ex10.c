@@ -1,0 +1,4 @@
+/* 10. Crie uma estrutura que armazene as informações de um ponto, tais como: coordenadas (x, y), a altitude naquele ponto e o tipo de vegetação (utilize os códigos: 1 = banhado, 2 = água, 3 = campo, 4 = arroz, 5 = solo exposto, 6 = mata de restinga, 7 = aluvial, 8 = praias lagunares, 9 = área urbana, 10 = mata de pinus e 11 = dunas). Desenvolva um algoritmo que: 
+    • Leia um conjunto de informações de pontos (use sentinela), preenchendo a estrutura definida. 
+    • Determine, pelo número de pontos, qual é o tipo de vegetação mais abundante. 
+    • Encontre os pontos mais alto e mais baixo e os tipos de vegetações nestes pontos. */

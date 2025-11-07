@@ -1,0 +1,1 @@
+// 3. Crie uma estrutura para armazenar os dados de retângulos (pontos diagonais inferior- esquerda e superior-direita). Crie um algoritmo que permita ler, armazenar e imprimir uma quantidade TAM de retângulos. 

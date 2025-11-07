@@ -1,0 +1,1 @@
+// 6. Utilizando as estruturas apropriadas definidas nos exercícios anteriores, crie um algoritmo que leia as coordenadas de um retângulo e um conjunto de pontos (determinados por um valor sentinela) e informe para cada ponto lido se está dentro ou fora do retângulo. Imprima a quantidade de pontos dentro e fora do retângulo. 

@@ -1,0 +1,1 @@
+// 4. Crie uma estrutura para armazenar os dados de triângulos. Crie um algoritmo que permita ler, armazenar e imprimir uma quantidade TAM de triângulos. 

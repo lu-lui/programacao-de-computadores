@@ -1,0 +1,1 @@
+// 5. Utilizando as estruturas apropriadas definidas nos exercícios anteriores, crie um algoritmo que leia um conjunto de pontos (determinados por um valor sentinela) e calcule o envelope (retângulo que contém todos os pontos lidos). Imprima as coordenadas do envelope. 

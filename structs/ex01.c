@@ -1,0 +1,1 @@
+// 1. Construa uma estrutura para armazenar pontos (coordenadas x e y) no plano cartesiano. Crie um algoritmo que permita ler, armazenar e imprimir uma quantidade TAM de pontos. 

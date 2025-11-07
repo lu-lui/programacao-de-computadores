@@ -1,0 +1,1 @@
+// 7. Utilizando as estruturas apropriadas definidas nos exercícios anteriores, crie um algoritmo que leia as informações de um círculo e um conjunto de pontos (determinados por um valor sentinela) e informe para cada ponto lido se está dentro ou fora do círculo. Imprima os totais de pontos dentro e fora do círculo. 

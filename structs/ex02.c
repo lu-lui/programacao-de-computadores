@@ -1,0 +1,1 @@
+// 2. Crie uma estrutura para armazenar os dados de círculos (ponto central e raio). Crie um algoritmo que permita ler, armazenar e imprimir uma quantidade TAM de círculos. 

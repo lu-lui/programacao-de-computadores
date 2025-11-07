@@ -1,0 +1,1 @@
+// 8. Modifique a estrutura ponto a fim de representar pontos em um espaço tridimensional. Crie um algoritmo que leia um conjunto de pontos (determinados por um valor sentinela) e calcule o cubo que contém todos estes pontos. Imprima as coordenadas dos vértices do cubo. 
