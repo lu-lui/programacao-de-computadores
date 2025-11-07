@@ -1,3 +1,5 @@
+// O que será impresso na tela?
+
 #include <stdio.h>
 
 int main(){
@@ -14,9 +16,14 @@ int main(){
     printf("%d %d\n", x, y);
 }
 
-/* O que será impresso na tela?
+/*
 ( )4 3
+
 ( )0 4
+
 ( )4 1
+
 (x)3 4
-( )4 0*/
+
+( )4 0
+ */
