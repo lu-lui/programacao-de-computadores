@@ -13,13 +13,13 @@ int main()
 }
 
 /*
-( )Imprime: 4 9 12
+[ ]Imprime: 4 9 12
 
-(X)Se a linha 8 fosse printf("%d ", *ptr++); imprimiria 4 9 12
+[X]Se a linha 8 fosse printf("%d ", *ptr++); imprimiria 4 9 12
 
-( )Se a linha 8 fosse printf("%d ", *ptr++); imprimiria 4 5 6
+[ ]Se a linha 8 fosse printf("%d ", *ptr++); imprimiria 4 5 6
 
-( )Se a linha 8 fosse printf("%d ", *ptr++); daria erro
+[ ]Se a linha 8 fosse printf("%d ", *ptr++); daria erro
 
-(X)Imprime: 4 5 6
+[X]Imprime: 4 5 6
  */
