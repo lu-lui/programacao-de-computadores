@@ -1,0 +1,1 @@
+Exemplo de como criar bibliotecas para projetos em C :D
