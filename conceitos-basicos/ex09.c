@@ -18,7 +18,7 @@ int main(){
     printf("Numero de bicicletas vendidas: ");
     scanf("%d", &bicicletas_vendidas);
 
-    salario_final = (custo * 0,15 * bicicletas_vendidas + 2 * salario_minimo * funcionarios) / funcionarios;
+    salario_final = (custo * 0.15 * bicicletas_vendidas + 2 * salario_minimo * funcionarios) / funcionarios;
 
-    printf("Salario final de cada funcionario: %.2f", salario_final);
+    printf("Salario final de cada funcionario: R$%.2f", salario_final);
 }
