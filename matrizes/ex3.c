@@ -14,4 +14,6 @@ int main(){
             printf("%d ", B[i]);
         }
     }   
+
+    return 0;
 }

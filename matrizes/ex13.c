@@ -19,5 +19,7 @@ int main(){
             soma += V[j];  
     }
     
-    printf("Soma dos valores maiores de 5 no vetor V: %d", soma);    
+    printf("Soma dos valores maiores de 5 no vetor V: %d", soma);   
+    
+    return 0;
 }

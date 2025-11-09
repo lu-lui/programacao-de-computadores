@@ -19,4 +19,6 @@ int main(){
         
         printf("%d ", C[i]);
     } 
+
+    return 0;
 }

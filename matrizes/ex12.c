@@ -30,4 +30,6 @@ int main(){
     for (int i = 0; i < tam*2; i++){
         printf("%d ", R[i]);
     }   
+
+    return 0;
 }

@@ -24,4 +24,6 @@ int main(){
     }
 
     printf("O valor %d aparece %d vezes no Vetor A", V, W);
+
+    return 0;
 }

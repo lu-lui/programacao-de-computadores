@@ -45,4 +45,6 @@ int main(){
             printf("%d ", V[i]);
         }   
     } 
+
+    return 0;
 }

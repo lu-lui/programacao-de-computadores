@@ -27,4 +27,6 @@ int main(){
         } 
     }
     printf("O maior elemento de Q e o %d que fica na posicao %d", maior, posicao);
+
+    return 0;
 }

@@ -21,4 +21,6 @@ int main(){
     salario_final = (custo * 0.15 * bicicletas_vendidas + 2 * salario_minimo * funcionarios) / funcionarios;
 
     printf("Salario final de cada funcionario: R$%.2f", salario_final);
+
+    return 0;
 }
