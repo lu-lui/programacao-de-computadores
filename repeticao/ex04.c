@@ -20,4 +20,5 @@ int main(){
             printf("Os dois valores sao iguais\n");
     } while (n1 != n2);
     
+    return 0;
 }

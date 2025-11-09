@@ -23,4 +23,6 @@ int main(){
     else if (numero < 0)
         printf("NUMERO NEGATIVO\n");
     }
+
+    return 0;
 }

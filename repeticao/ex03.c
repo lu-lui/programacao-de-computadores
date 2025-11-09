@@ -17,4 +17,6 @@ int main(){
         else 
             printf("NUMERO IMPAR\n");
     } while (numero > 0);
+
+    return 0;
 }
