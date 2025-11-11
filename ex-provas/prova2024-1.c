@@ -25,7 +25,6 @@ int main() {
     int horas_de_frio_mes_media[5] = { 62, 124, 137, 112, 61 }; //de 1954 a 2017
     int horas_de_frio[5][5];
     float perc_horas_de_frio_mes[5];
-
     int m, s; //(m)ês e (s)emana
     float perc_total_horas_de_frio = 0.0; //percentual do total de horas em relação à media
     
@@ -47,4 +46,20 @@ int main() {
 void calcula(int horas_de_frio[5][5], int horas_de_frio_mes_media[5], float perc_horas_de_frio_mes[5], float
 *perc_total_horas_de_frio){
     
+    int soma_horas_de_frio, total_horas_de_frio=0, total_media_historica=0;
+
+    for (int m = 0; m < 5; m++){
+        soma_horas_de_frio=0;
+
+        for (int s = 0; s < 5; s++){
+            soma_horas_de_frio += horas_de_frio[m][s];
+            total_horas_de_frio += horas_de_frio[m][s];
+        }
+
+        perc_horas_de_frio_mes[m] = (float) soma_horas_de_frio * 100 / horas_de_frio_mes_media[m]; 
+        
+        total_media_historica += horas_de_frio_mes_media[m];
+    }
+    
+    *perc_total_horas_de_frio = (float) total_horas_de_frio * 100 / total_media_historica;
 }
