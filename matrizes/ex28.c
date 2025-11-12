@@ -1,7 +1,7 @@
 // 28. Escreva um programa para ler um vetor de 10 palavras. A seguir ler uma letra. Copiar para outro vetor (sem deixar espaços vagos) todas as palavras que começam a letra informada. Após o término na cópia escrever o vetor gerado.
 
 
-
+/*
 #include <stdio.h>
 #include <string.h>
 
@@ -32,4 +32,4 @@ int main(){
     
 
     return 0;
-}
+}*/
