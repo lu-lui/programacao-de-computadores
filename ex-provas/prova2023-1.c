@@ -24,5 +24,29 @@ int main() {
 
 void numeros_amigos(int n, int amigos[TAM][2], int *q){
 
-    
+	int soma_i, soma_j, i, j, ii, jj;
+	
+	*q=0;
+		
+	for (ii=1; ii<=n; ii++) {
+		for (jj=ii+1; jj<=n; jj++) {
+			soma_i = 0;
+			for (i=1; i<(ii/2)+1; i++) {
+				if (ii%i==0)
+					soma_i = soma_i + i;
+			}
+
+			soma_j = 0;
+			for (j=1; j<(jj/2)+1; j++) {
+				if (jj%j==0)
+					soma_j = soma_j + j;
+			}
+
+			if ((soma_i == jj) && (soma_j == ii)) {
+				amigos[*q][0]=ii;
+				amigos[*q][1]=jj;
+				(*q)++;
+			}
+		}
+	}
 }

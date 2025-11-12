@@ -45,7 +45,7 @@ void prova(char variedades[10][30], int temp_min[10], int temp_max[10], int prec
     char temp[10][30];
     
     for (int i = 0; i < 10; i++){
-        if (valor_pergunta1 >= prec_min[i] & valor_pergunta1 <= prec_max[i] && valor_pergunta2 >= alti_min[i] && valor_pergunta2 <= alti_max[i]) {
+        if (valor_pergunta1 >= prec_min[i] && valor_pergunta1 <= prec_max[i] && valor_pergunta2 >= alti_min[i] && valor_pergunta2 <= alti_max[i]) {
             strcpy(respostas[*quantidade], variedades[i]);
             
             (*quantidade)++;   
