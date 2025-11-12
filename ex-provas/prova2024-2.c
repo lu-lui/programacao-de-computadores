@@ -8,6 +8,7 @@ A função prova(), recebe:
     • da precipitação ( prec_min[10] e prec_max[10])
     • da altitude ( alti_min[10] e alti_max[10]) e
     • os valores referentes às perguntas ( valor_pergunta1 e valor_pergunta2).
+
 Ainda, a função prova(), devolve por referência os nomes das variedades ( respostas[10][30]) que podem ser cultivadas cujas condições são satisfeitas com os valores informados, além da quantidade de variedades ( *quantidade).*/
 
 #include <stdio.h>
@@ -41,4 +42,13 @@ int main() {
 
 void prova(char variedades[10][30], int temp_min[10], int temp_max[10], int prec_min[10], int prec_max[10], int alti_min[10], int alti_max[10], int valor_pergunta1, int valor_pergunta2, char respostas[10][30], int *quantidade){
     
+    char temp[10][30];
+    
+    for (int i = 0; i < 10; i++){
+        if (valor_pergunta1 >= prec_min[i] & valor_pergunta1 <= prec_max[i] && valor_pergunta2 >= alti_min[i] && valor_pergunta2 <= alti_max[i]) {
+            strcpy(respostas[*quantidade], variedades[i]);
+            
+            (*quantidade)++;   
+        }
+    }
 }

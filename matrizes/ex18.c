@@ -5,13 +5,15 @@
 
 
 int main(){
-    char palavras[10]; //isso nao é um vetor com 10 strings, isso é uma string de 10 caracteres
+    char palavras[50]; //isso nao é um vetor com 10 strings, isso é uma string de 10 caracteres
 
-        printf("Palavra: ");
-        scanf("%s", palavras);
+        for (int i = 1; i <= 10; i++){
+           printf("Palavra %d: ", i);
+            scanf("%s", palavras);
 
-        printf("A palavra %s tem %d caracteres", palavras, strlen(palavras));
-
+            printf("A palavra %s tem %d caracteres\n", palavras, strlen(palavras));
+        }
+        
         return 0;
     }
     
