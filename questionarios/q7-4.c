@@ -1,3 +1,5 @@
+//Analise o programa C abaixo e indique a resposta correta:
+
 #include <stdio.h>
 
 typedef struct {
@@ -26,3 +28,23 @@ void leitura (int *qtde, pares vet[100]){
         (*qtde)++;
     
 }
+
+/*
+( ) O programa não compila porque não dá para passar vetor de struct como parâmetro.
+
+( ) O programa compila mas não executa, devido a linha 14 estar errada.
+
+( ) O programa não compila, devido as linhas 14 e 26 estarem erradas.
+
+( ) O programa compila mas não executa, devido a linha 26 estar errada.
+
+( ) O programa compila, executa e imprime:
+
+(X) Foram lidos 7 pares de valores.
+1 2
+3 4
+5 6
+7 8
+9 10
+11 12
+13 14*/

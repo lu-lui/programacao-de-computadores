@@ -1,3 +1,5 @@
+//O que é impresso quando as instruções em C, a seguir, são executadas?
+
 #include <stdio.h>
 
 typedef struct {
@@ -29,3 +31,14 @@ int main(){
      printf("%c %d %.2f %.4lf", tdata.x.c, tdata.x.i, tdata.x.f, tdata.x.d);
      return 0;
 }
+
+/*
+( ) [Error] expected specifier-qualifier-list before 'sdata'
+
+( ) a 1234 12.34 1111.1111 a 1234 12.34 1111.1111
+
+(X) a 1234 12.34 1111.1111 b 4321 43.21 2222.2222
+
+( ) b 4321 43.21 2222.2222 b 4321 43.21 2222.2222
+
+( ) [Error] 'struct varios_tipos' has no member named 'x'*/
