@@ -40,14 +40,7 @@ Para remover um livro sem deixar “buracos” na matriz (o que complica a inser
 DICA:
 Tudo isso deve ser controlado pelo contador de livros.
 
-2.3 Menu Inicial
-O sistema deve apresentar um menu inicial interativo, que fique em loop at ́e que o usu ́ario escolha Sair. O Menu deve conter as seguintes op ̧c ̃oes:
-1. Inserir Livro: Coletar e armazenar os 4 atributos. Caso a base de dados esteja cheia, enviar a mensagem: “N ̃ao  ́e poss ́ıvel adicionar mais livros. Acervo Lotado”.
-2. Listar Livros: Percorrer a base de dados e exibir os dados de todos os livros do acervo. Caso ainda n ̃ao haja livros cadastrados, enviar a mensagem: “N ̃ao h ́a livros no acervo”.
-3. Buscar por T ́ıtulo: Perguntar ao usu ́ario qual t ́ıtulo deve ser buscado, busc ́a-lo nas matrizes e exibir os seus atributos (caso o livro esteja no sistema). Se n ̃ao existir, enviar a mensagem: “T ́ıtulo n ̃ao encontrado”.
-4. Editar Livro: Ap ́os encontrar o livro pelo T ́ıtulo, o usu ́ario deve ser perguntado especificamente sobre qual informa ̧c ̃ao deseja alterar (T ́ıtulo, Autor, C ́odigo ou Ano) e o programa deve solicitar o novo valor, alterar na base de dados e enviar uma mensagem de opera ̧c ̃ao conclu ́ıda: “Altera ̧c ̃ao Conclu ́ıda”.
-5. Excluir Livro: Aplicar a l ́ogica de deslocamento para remover o registro.
-6. Sair: Encerramento da execu ̧c ̃ao.
+
 
 Requisitos
 A implementa ̧c ̃ao deve demonstrar o dom ́ınio dos seguintes conceitos:
@@ -57,3 +50,17 @@ A implementa ̧c ̃ao deve demonstrar o dom ́ınio dos seguintes conceitos:
 4. Strings (<string.h>): Utiliza ̧c ̃ao das fun ̧c ̃oes de manipula ̧c ̃ao e compara ̧c ̃ao de strings (strcpy, strcmp) nos campos textuais.
 5. Ponteiros Fundamentais: Aplica ̧c ̃ao de ponteiros para a passagem eficiente das matrizes/vetores e de strings para as fun ̧c ̃oes.
 6. Gerenciamento de Escopo: N ̃ao utilize vari ́aveis globais. A passagem de dados e a manipula ̧c ̃ao do contador de livros deve ser feita via parˆametro de fun ̧c ̃ao (utilizando ponteiros quando necess ́ario).*/
+
+
+/* PARTES JÁ FEITAS
+
+    2.3 Menu Inicial 
+O sistema deve apresentar um menu inicial interativo, que fique em loop at ́e que o usu ́ario escolha Sair. O Menu deve conter as seguintes op ̧c ̃oes:
+1. Inserir Livro: Coletar e armazenar os 4 atributos. Caso a base de dados esteja cheia, enviar a mensagem: “N ̃ao  ́e poss ́ıvel adicionar mais livros. Acervo Lotado”.
+2. Listar Livros: Percorrer a base de dados e exibir os dados de todos os livros do acervo. Caso ainda n ̃ao haja livros cadastrados, enviar a mensagem: “N ̃ao h ́a livros no acervo”.
+3. Buscar por T ́ıtulo: Perguntar ao usu ́ario qual t ́ıtulo deve ser buscado, busc ́a-lo nas matrizes e exibir os seus atributos (caso o livro esteja no sistema). Se n ̃ao existir, enviar a mensagem: “T ́ıtulo n ̃ao encontrado”.
+4. Editar Livro: Ap ́os encontrar o livro pelo T ́ıtulo, o usu ́ario deve ser perguntado especificamente sobre qual informa ̧c ̃ao deseja alterar (T ́ıtulo, Autor, C ́odigo ou Ano) e o programa deve solicitar o novo valor, alterar na base de dados e enviar uma mensagem de opera ̧c ̃ao conclu ́ıda: “Altera ̧c ̃ao Conclu ́ıda”.
+5. Excluir Livro: Aplicar a l ́ogica de deslocamento para remover o registro.
+6. Sair: Encerramento da execu ̧c ̃ao.
+
+*/

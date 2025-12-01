@@ -7,10 +7,11 @@
 #define MAX_LIVROS 50
 
 struct livro{
-    char titulo[80];
-    char autor[50];
-    char codigo[20];
-    int ano;
+    char titulos[MAX_LIVROS][80];
+    char autores[MAX_LIVROS][50];
+    char codigos[MAX_LIVROS][20];
+    int anos[MAX_LIVROS];
+    int contador_livros = 0; //é aqui?
 } info_livro[MAX_LIVROS];
 
 void cria_lista(void);
@@ -22,6 +23,8 @@ void excluir(void);
 
 int main(){
     int opcao;
+
+    cria_lista();
 
     for (;;) {
 		opcao = exibir_menu();
@@ -41,9 +44,15 @@ int main(){
 		}
 	}
 
-    cria_lista();
+    
 
     return 0;
+}
+
+void cria_lista(void){ //ve se a lista está cheia
+	int i;
+	for (i = 0; i < MAX_LIVROS; i++)
+		info_livro[i].titulos[i][0] = '\0';
 }
 
 int exibir_menu(void){
@@ -63,16 +72,6 @@ int exibir_menu(void){
 	return c;
 }
 
-void cria_lista(void){ //ve se a lista está cheia
-	int i;
-	for (i = 0; i < MAX_LIVROS; i++)
-		info_livro[i].titulo[0] = '\0';
-}
-
-int exibir_menu(void){
- 
-    
-}
 void inserir(void){
 
 
