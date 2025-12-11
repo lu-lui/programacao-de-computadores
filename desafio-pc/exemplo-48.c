@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 #define MAX 100
 
@@ -9,12 +10,15 @@ struct end {
 	char cidade[100];
 	char estado[100];
 	unsigned long int cep;
-} info[MAX];
+} *info;
 
 void cria_lista(void);
 void insere(void);
 void apaga(void);
+void apaga_por_nome(void);
 void imprime(void);
+void imprime_por_nome(void);
+int busca_por_nome(char * nome);
 int menu(void);
 int livre(void);
 void ler_string(char palavra[100], int tamanho);
@@ -23,6 +27,8 @@ int main()
 {
 	int escolha;
 
+	info = (struct end *) malloc(MAX * sizeof(struct end));
+	
 	cria_lista();
 	for (;;) {
 		escolha = menu();
@@ -34,9 +40,15 @@ int main()
 			apaga();
 			break;
 		case 3:
-			imprime();
+			apaga_por_nome();
 			break;
 		case 4:
+			imprime();
+			break;
+		case 5:
+			imprime_por_nome();
+			break;
+		case 6:
 			exit(0);
 			break;
 		}
@@ -44,7 +56,8 @@ int main()
 	return 0;
 }
 
-void cria_lista(void){
+void cria_lista(void)
+{
 	int i;
 	for (i = 0; i < MAX; i++)
 		info[i].nome[0] = '\0';
@@ -56,12 +69,14 @@ int menu(void)
 	do {
 		printf("-- MENU:\n");
 		printf("\t 1. Inserir um nome\n");
-		printf("\t 2. Excluir um nome\n");
-		printf("\t 3. Listar o arquivo\n");
-		printf("\t 4. Sair\n");
+		printf("\t 2. Excluir por posição\n");
+		printf("\t 3. Excluir por nome\n");
+		printf("\t 4. Imprimir todos\n");
+		printf("\t 5. Imprimir por nome\n");
+		printf("\t 6. Sair\n");
 		printf("-- Digite sua escolha: ");
 		scanf("%d", &c);
-	} while (c <= 0 || c > 4);
+	} while (c <= 0 || c > 6);
 	getchar();
 	return c;
 }
@@ -130,6 +145,24 @@ void apaga(void)
 		info[posicao].nome[0] = '\0';
 }
 
+void apaga_por_nome(void)
+{
+	int i;
+	char nome[100];
+	
+	printf("\t Informe o nome a ser procurado: ");
+	ler_string(nome, 100);
+	i=busca_por_nome(nome);
+
+	if (i != -1) {
+		if (i >= 0 && i < MAX)
+			info[i].nome[0] = '\0';
+		printf("\t Nome apagado com sucesso!\n");
+	} else {
+		printf("\t Nome não encontrado!\n");
+	} 
+}
+
 void imprime(void)
 {
 	int i;
@@ -143,4 +176,35 @@ void imprime(void)
 			printf("\t Estado: %s\n", info[i].estado);
 			printf("\t CEP: %lu\n", info[i].cep);
 		}
+}
+
+int busca_por_nome(char * nome) {
+	int i;
+	
+	for  (i=0; i<MAX; i++) {
+		if (strcmp(nome, info[i].nome) == 0)
+			return i;
+	}
+	return -1;
+}
+
+void imprime_por_nome(void)
+{
+	int i;
+	char nome[100];
+	
+	printf("\t Informe o nome a ser procurado: ");
+	ler_string(nome, 100);
+	i=busca_por_nome(nome);
+
+	if (i != -1) {
+		printf("-- Registro %d:\n", i);
+		printf("\t Nome: %s", info[i].nome);
+		printf("\t Rua: %s", info[i].rua);
+		printf("\t Cidade: %s", info[i].cidade);
+		printf("\t Estado: %s\n", info[i].estado);
+		printf("\t CEP: %lu\n", info[i].cep);
+	} else {
+		printf("\t Nome não encontrado!\n");
+	}
 }
