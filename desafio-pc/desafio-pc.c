@@ -12,7 +12,7 @@ struct livro{
     char codigos[MAX_LIVROS][20];
     int anos[MAX_LIVROS];
     int contador_livros = 0; //é aqui?
-} info_livro[MAX_LIVROS];
+};
 
 void cria_lista(void);
 int exibir_menu(void);
@@ -21,8 +21,19 @@ void listar(void);
 void buscar(void);
 void excluir(void);
 
+
+//struct livro info_livro
+
+funcao(struct livro *info_livro){
+	info_livro->titulos 
+	fflush(stdin);
+}
+
+
+
 int main(){
     int opcao;
+	struct livro info_livro;
 
     cria_lista();
 
@@ -30,7 +41,7 @@ int main(){
 		opcao = exibir_menu();
 		switch (opcao) {
 		case 1:
-			insere();
+			insere(&info_livro);
 			break;
 		case 2:
 			apaga();
