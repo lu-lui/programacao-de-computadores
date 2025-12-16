@@ -140,16 +140,18 @@ void buscar(livro *info){
 
 void editar(livro *info){
 	char titulo[80];
+	int existe=0;
 
 	printf("Insira o titulo que deseja editar: ");
 	fgets(titulo, sizeof(titulo), stdin);
 
 	for (int i = 0; i < info->contador_livros; i++){
 		int escolha;
-		
+
 		if (strcmp(titulo, info->titulos[i]) == 0){
 			printf("\tQue dado voce gostaria de alterar?: \n1. Titulo\n 2. Autor\n 3. Codigo 4. Ano\n");
 			scanf("%d", &escolha);
+			getchar();
 
 			switch (escolha){
 			case 1:
@@ -176,9 +178,14 @@ void editar(livro *info){
 				break;
 			}
 			
-			if (escolha >=1 && escolha >=4)
+			if (escolha >=1 && escolha <=4)
 				printf("Alteracao concluida");
+
+			existe++;
 		}
 	}
+
+	if(existe ==0)
+		printf("Titulo nao encontrado");
 }
 
