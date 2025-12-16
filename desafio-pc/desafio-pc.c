@@ -6,9 +6,9 @@
 #include <stdlib.h>
 #include <locale.h>
 
-#define MAX 2
+#define MAX 50
 
-typedef struct biblioteca {
+typedef struct {
     char titulos[MAX][80];
     char autores[MAX][50];
     char codigos[MAX][20];
@@ -16,23 +16,21 @@ typedef struct biblioteca {
     int contador_livros;
 } livro;
 
-
-void cria_lista(livro *info);
 int exibir_menu(void);
 void inserir(livro *info);
 void listar(livro *info);
 void buscar(livro *info);
-void excluir(livro *info);
 void editar(livro *info);
+void excluir(livro *info);
 void remover_n(char str[]);
 
 int main(){
-	setlocale(LC_ALL, "");
+	setlocale(LC_ALL, "Portuguese_Brazil");
 
     int opcao;
 	livro info;
 
-    cria_lista(&info);
+    info.contador_livros = 0;
 
    for (;;) {
 		opcao = exibir_menu();
@@ -58,10 +56,6 @@ int main(){
 		}
 	}
 	return 0;
-}
-
-void cria_lista(livro *info){
-	info->contador_livros=0;
 }
 
 int exibir_menu(void){
@@ -162,46 +156,45 @@ void editar(livro *info){
 		int escolha;
 
 		if (strcmp(titulo, info->titulos[i]) == 0){
-			printf("\tQue dado você gostaria de alterar?: \n1. Título \n2. Autor \n3. Código \n4. Ano\n");
+			printf("\tQue dado você gostaria de alterar? \n1. Título \n2. Autor \n3. Código \n4. Ano\n");
 			printf("Digite sua escolha: ");
 			scanf("%d", &escolha);
 			getchar();
 
 			switch (escolha){
-			case 1:
-				printf("Novo título: ");
-				fgets(info->titulos[i], 80, stdin);
-				remover_n(info->titulos[i]);
-				break;
+				case 1:
+					printf("Novo título: ");
+					fgets(info->titulos[i], 80, stdin);
+					remover_n(info->titulos[i]);
+					break;
 
-			case 2:
-				printf("Novo nome do autor: ");
-				fgets(info->autores[i], 50, stdin);
-				remover_n(info->autores[i]);
-				break;
+				case 2:
+					printf("Novo nome do autor: ");
+					fgets(info->autores[i], 50, stdin);
+					remover_n(info->autores[i]);
+					break;
 
-			case 3: 
-				printf("Novo código: ");
-				fgets(info->codigos[i], 20, stdin);
-				remover_n(info->codigos[i]);
-				break;
+				case 3: 
+					printf("Novo código: ");
+					fgets(info->codigos[i], 20, stdin);
+					remover_n(info->codigos[i]);
+					break;
 
-			case 4:
-				printf("Novo ano de lançamento: ");
-				scanf("%d", &info->anos[i]);
-				getchar();
-				break;
-			
-			default:
-				printf("Opç?o inválida\n");
-				break;
+				case 4:
+					printf("Novo ano de lançamento: ");
+					scanf("%d", &info->anos[i]);
+					getchar();
+					break;
+				
+				default:
+					printf("Opç?o inválida\n");
+					break;
 			}
 			
 			if (escolha >=1 && escolha <=4){
 				printf("Alteraç?o concluída!\n");
 				existe++;
-			}
-				
+			}	
 		}
 	}
 
@@ -225,7 +218,6 @@ void excluir(livro *info){
 				strcpy(info->autores[j], info->autores[j+1]);
 				strcpy(info->codigos[j], info->codigos[j+1]);
 				info->anos[j] = info->anos[j+1];
-				existe++;
 			}
 			printf("\tLivro excluído com sucesso!\n");
 			info->contador_livros--;
@@ -235,7 +227,6 @@ void excluir(livro *info){
 
 	if (existe == 0)
 		printf("\tO livro n?o foi encontrado\n");
-
 }
 
 void remover_n(char str[]){
