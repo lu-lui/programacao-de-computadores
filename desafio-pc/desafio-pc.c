@@ -21,7 +21,7 @@ int exibir_menu(void);
 void inserir(livro *info);
 void listar(livro *info);
 void buscar(livro *info);
-void excluir(void);
+void excluir(livro *info);
 void editar(livro *info);
 
 int main(){
@@ -46,7 +46,7 @@ int main(){
 			editar(&info);
 			break;
 		case 5:
-			excluir();
+			excluir(&info);
 			break;
 		case 6:
 			exit(0);
@@ -85,16 +85,16 @@ void inserir(livro *info){
 		return;
 	}
 
-	printf("Registro %d", info->contador_livros);
+	printf("Registro %d\n", info->contador_livros);
 	printf("Titulo: ");
 	fgets(info->titulos[c], 80, stdin);
-	getchar();
+	printf("Autor: ");
 	fgets(info->autores[c], 50, stdin);
-	getchar();
+	printf("Codigo: ");
 	fgets(info->codigos[c], 20, stdin);
-	getchar();
+	printf("Ano de lancamento: ");
 	scanf("%d", &info->anos[c]);
-
+	getchar();
 	info->contador_livros++;
 }
 
@@ -107,7 +107,7 @@ void listar(livro *info){
 	}
 		
 	for (int i = 0; i < c; i++){
-		printf("\n\tRegistro %d:", i);
+		printf("\n\tRegistro %d\n:", i);
 		printf("Titulo: %s\n", info->titulos[i]);
 		printf("Autor: %s\n", info->autores[i]);
 		printf("Codigo: %s\n", info->codigos[i]);
@@ -149,28 +149,26 @@ void editar(livro *info){
 		int escolha;
 
 		if (strcmp(titulo, info->titulos[i]) == 0){
-			printf("\tQue dado voce gostaria de alterar?: \n1. Titulo\n 2. Autor\n 3. Codigo 4. Ano\n");
+			printf("\tQue dado voce gostaria de alterar?: \n1. Titulo \n2. Autor \n3. Codigo \n4. Ano\n");
 			scanf("%d", &escolha);
 			getchar();
 
 			switch (escolha){
 			case 1:
 				fgets(info->titulos[i], 80, stdin);
-				getchar();
 				break;
 
 			case 2:
 				fgets(info->autores[i], 50, stdin);
-				getchar();
 				break;
 
 			case 3: 
 				fgets(info->codigos[i], 20, stdin);
-				getchar();
 				break;
 
 			case 4:
 				scanf("%d", &info->anos[i]);
+				getchar();
 				break;
 			
 			default:
@@ -189,3 +187,29 @@ void editar(livro *info){
 		printf("Titulo nao encontrado");
 }
 
+void excluir(livro *info){
+	char titulo[80];
+	int existe=0;
+	
+	printf("Insira o titulo que deseja procurar: ");
+	fgets(titulo, sizeof(titulo), stdin);
+
+	for (int i = 0; i < info->contador_livros; i++){
+		if (strcmp(titulo, info->titulos[i]) == 0){
+			for (int j = i; j < info->contador_livros-1; j++){
+				strcpy(info->titulos[j], info->titulos[j+1]);
+				strcpy(info->autores[j], info->autores[j+1]);
+				strcpy(info->codigos[j], info->codigos[j+1]);
+				info->anos[j] = info->anos[j+1];
+				existe++;
+				info->contador_livros--;
+            	printf("Livro excluido com sucesso\n");
+			}
+			return;
+		}
+	}
+
+	if (existe == 0)
+		printf("O livro não foi encontrado\n");
+
+}
