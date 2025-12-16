@@ -1,0 +1,91 @@
+DESAFIO – FASE 1
+
+IMPLEMENTAÇÃO ESTÁTICA
+
+Disciplina de Programação de Computadores
+
+Introdução e Objetivo
+
+Você acaba de integrar a equipe da TechDev Solutions, uma consultoria de software de Pelotas que iniciou uma parceria com a Universidade Federal de Pelotas (UFPel). A sua primeira missão é modernizar a gestão do acervo da Biblioteca da UFPel. Seu papel é crucial no desenvolvimento de um Sistema de Gerenciamento de Biblioteca (SGB) eficiente e robusto, que deve ser construído na linguagem C.
+Para garantir a estabilidade e cumprir o cronograma, o projeto foi dividido em duas etapas de desenvolvimento. Cada fase representa uma evolução na arquitetura do sistema. Neste primeiro momento, você deve se dedicar integralmente à primeira fase. A descrição da segunda fase será enviada após a finalização da primeira.
+Na primeira fase, o objetivo é desenvolver a lógica funcional do SGB utilizando estruturas de dados estáticas. O foco principal é a correta aplicação dos fundamentos da linguagem C, como modularização de código, estruturas de controle, matrizes, manipulação de strings e ponteiros.
+
+Projeto – 1ª Fase
+
+Para esta fase, você deve desenvolver um sistema que siga as seguintes especificações:
+2.1 Estrutura de Armazenamento
+Os livros devem ser armazenados em estruturas estáticas, com capacidade máxima de 50 livros. Sobre cada livro, deseja-se armazenar:
+Título (char[80]): título do livro.
+Autor (char[50]): nome do autor do livro.
+Código (char[20]): código de registro do livro (combinação de números com letras, por exemplo, A2B1).
+Ano de publicação (int): ano em que o livro foi publicado.
+
+// DICA:
+// A forma mais eficiente de organizar isso é utilizando matrizes paralelas, onde a conexão
+// entre os dados de um livro é feita pelo índice em comum.
+
+#define MAX_LIVROS 50
+char titulos[MAX_LIVROS][80];
+char autores[MAX_LIVROS][50];
+char codigos[MAX_LIVROS][20];
+int anos[MAX_LIVROS];
+int contador_livros = 0; // Usado para gerenciar a próxima posição livre e fazer a conexão entre os dados de um livro
+
+2.2 Operações do Sistema
+O sistema deve suportar as seguintes operações:
+• Inserção: coletar todos os atributos (título, autor, código e ano) via terminal. Um livro deve ser inserido na próxima posição livre da estrutura de dados (não devem existir “buracos” na estrutura).
+• Busca: encontrar e exibir os dados completos de um livro, pesquisando pelo título.
+• Exclusão: remover um livro do sistema, buscando pelo título.
+• Edição: modificar informações de um livro após buscá-lo pelo título.
+
+2.2.1 Lógica de Exclusão: Deslocamento (Shifting)
+Para remover um livro sem deixar “buracos” na matriz (o que complica a inserção, listagem e busca), é obrigatório utilizar a lógica de deslocamento (shifting). Você deve seguir o passo a passo abaixo:
+• Passo 1 (Deslocar): após encontrar o livro no índice i, inicie um laço de repetição da posição i até a última posição ativa.
+• Passo 2 (Mover): dentro do laço, copie o conteúdo da posição i + 1 para a posição i em todas as matrizes paralelas (títulos, autores, códigos e anos).
+• Passo 3 (Ajustar): o contador de livros deve ser decrementado ao final da operação.
+
+// EXEMPLO:
+// Se o livro na posição 1 for excluído, o livro da posição 2 se move para a posição 1,
+// o da posição 3 para a posição 2, e assim por diante.
+
+// DICA:
+// Tudo isso deve ser controlado pelo contador de livros.
+
+2.3 Menu Inicial
+O sistema deve apresentar um menu inicial interativo, que fique em loop até que o usuário escolha sair.
+
+O menu deve conter as seguintes opções:
+1. Inserir livro: coletar e armazenar os quatro atributos. Caso a base de dados esteja cheia, exibir a mensagem: “Não é possível adicionar mais livros. Acervo lotado.”
+2. Listar livros: percorrer a base de dados e exibir os dados de todos os livros do acervo. Caso ainda não haja livros cadastrados, exibir a mensagem: “Não há livros no acervo.”
+3. Buscar por título: perguntar ao usuário qual título deve ser buscado, procurá-lo nas matrizes e exibir seus atributos, caso o livro exista no sistema. Caso contrário, exibir a mensagem: “Título não encontrado.”
+4. Editar livro: após encontrar o livro pelo título, o usuário deve ser perguntado especificamente sobre qual informação deseja alterar (título, autor, código ou ano). O programa deve solicitar o novo valor, alterar na base de dados e exibir a mensagem: “Alteração concluída.”
+5. Excluir livro: aplicar a lógica de deslocamento para remover o registro.
+6. Sair: encerramento da execução.
+
+// DICA:
+// Verifique se o limite de 50 livros foi atingido, impedindo novas inserções se a base estiver cheia.
+
+// EXEMPLO DE MENU:
+// Menu para o Gerenciamento da Biblioteca da UFPel
+// Escolha uma opção para interagir com o nosso sistema:
+// 1. Inserir um livro
+// 2. Listar livros do acervo
+// 3. Buscar por um livro
+// 4. Editar um livro
+// 5. Excluir um livro
+// 6. Sair
+// Digite sua opção:
+
+Requisitos
+A implementação deve demonstrar domínio dos seguintes conceitos:
+Modularização: o programa deve ser organizado em funções coesas (exibir menu, inserir, buscar, etc.).
+Matrizes estáticas: uso de matrizes paralelas para o armazenamento dos dados (títulos, autores, etc.).
+Estruturas de controle e repetição: aplicação de if/else, switch e laços (for/while) na lógica do menu, busca, edição e exclusão.
+Strings (<string.h>): utilização das funções de manipulação e comparação de strings (strcpy, strcmp) nos campos textuais.
+Ponteiros fundamentais: aplicação de ponteiros para a passagem eficiente das matrizes, vetores e strings para as funções.
+Gerenciamento de escopo: não utilizar variáveis globais. A passagem de dados e a manipulação do contador de livros devem ser feitas via parâmetro de função, utilizando ponteiros quando necessário.
+
+Estrutura do Desafio
+O Desafio Final está dividido em duas fases distintas:
+A primeira fase (Fase 1) deve ser resolvida dentro do prazo estabelecido.
+A segunda fase (Fase 2) será disponibilizada somente após a conclusão do prazo da Fase 1.
