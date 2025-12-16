@@ -3,67 +3,61 @@
 
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 
-#define MAX_LIVROS 50
+#define MAX 50
 
-struct livro{
-    char titulos[MAX_LIVROS][80];
-    char autores[MAX_LIVROS][50];
-    char codigos[MAX_LIVROS][20];
-    int anos[MAX_LIVROS];
-    int contador_livros = 0; //é aqui?
-};
+typedef struct biblioteca {
+    char titulos[MAX][80];
+    char autores[MAX][50];
+    char codigos[MAX][20];
+    int anos[MAX];
+    int contador_livros;
+} livro;
 
-void cria_lista(void);
+
+void cria_lista(livro *info);
 int exibir_menu(void);
-void inserir(void);
-void listar(void);
+void inserir(livro *info);
+void listar(livro *info);
 void buscar(void);
 void excluir(void);
-
-
-//struct livro info_livro
-
-funcao(struct livro *info_livro){
-	info_livro->titulos 
-	fflush(stdin);
-}
-
-
+void editar();
 
 int main(){
     int opcao;
-	struct livro info_livro;
+	livro info;
 
-    cria_lista();
+    cria_lista(&info);
 
-    for (;;) {
+   for (;;) {
 		opcao = exibir_menu();
 		switch (opcao) {
 		case 1:
-			insere(&info_livro);
+			inserir(&info);
 			break;
 		case 2:
-			apaga();
+			listar(&info);
 			break;
 		case 3:
-			imprime();
+			buscar();
 			break;
 		case 4:
+			editar();
+			break;
+		case 5:
+			excluir();
+			break;
+		case 6:
 			exit(0);
 			break;
 		}
 	}
-
-    
-
-    return 0;
+	return 0;
 }
 
-void cria_lista(void){ //ve se a lista está cheia
-	int i;
-	for (i = 0; i < MAX_LIVROS; i++)
-		info_livro[i].titulos[i][0] = '\0';
+void cria_lista(livro *info){
+	info->contador_livros=0;
 }
 
 int exibir_menu(void){
@@ -83,13 +77,37 @@ int exibir_menu(void){
 	return c;
 }
 
-void inserir(void){
+void inserir(livro *info){
+	int c = info->contador_livros;
+	
+	if (c >= MAX){
+		printf("Acervo cheio, nao eh possivel adicionar mais livros");
+		return;
+	}
 
+	printf("Registro %d", info->contador_livros);
+	printf("Titulo: ");
+	fgets(info->titulos[c], 80, stdin);
+	getchar();
+	fgets(info->autores[c], 50, stdin);
+	getchar();
+	fgets(info->codigos[c], 20, stdin);
+	getchar();
+	scanf("%d", &info->anos[c]);
 
+	info->contador_livros++;
 }
-void listar(void){
 
-
+void listar(livro *info){
+	int c = info->contador_livros;
+	
+	for (int i = 0; i <= c; i++){
+		printf("\tab Registro %d:", c);
+		printf("Titulo: %s", info->titulos[i]);
+		printf("Autor: %s", info->autores[c]);
+		printf("Codigo: %s", info->codigos[c]);
+		printf("Ano: %d", info->anos[c]);
+	}	
 }
 void buscar(void){
 
