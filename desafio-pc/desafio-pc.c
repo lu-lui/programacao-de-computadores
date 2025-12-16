@@ -1,11 +1,12 @@
 //DESAFIO PC: SISTEMA DE GERENCIAMENTO DE BIBLIOTECA - PARTE 1
-// NOME: Lu√≠sa Passos Neutzling MATR√çCULA: 25101673
+// NOME: LuÌsa Passos Neutzling MATRÕCULA: 25101673
 
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include <locale.h>
 
-#define MAX 50
+#define MAX 2
 
 typedef struct biblioteca {
     char titulos[MAX][80];
@@ -23,8 +24,11 @@ void listar(livro *info);
 void buscar(livro *info);
 void excluir(livro *info);
 void editar(livro *info);
+void remover_n(char str[]);
 
 int main(){
+	setlocale(LC_ALL, "");
+
     int opcao;
 	livro info;
 
@@ -63,14 +67,15 @@ void cria_lista(livro *info){
 int exibir_menu(void){
 	int c = 0;
 	do {
-		printf("-- MENU:\n");
-		printf("\t 1. Inserir livro\n");
-		printf("\t 2. Listar livros\n");
-		printf("\t 3. Buscar por T√≠tulo\n");
-        printf("\t 4. Editar livro\n");
-		printf("\t 5. Excluir livro\n");
-        printf("\t 6. Sair\n");
-		printf("-- Digite sua escolha: ");
+		printf("\n====== MENU ======\n");
+		printf("1. Inserir livro\n");
+		printf("2. Listar livros\n");
+		printf("3. Buscar por tÌtulo\n");
+		printf("4. Editar livro\n");
+		printf("5. Excluir livro\n");
+		printf("6. Sair\n");
+		printf("==================\n");
+		printf("Digite sua escolha: ");
 		scanf("%d", &c);
 	} while (c <= 0 || c > 6);
 	getchar();
@@ -81,18 +86,24 @@ void inserir(livro *info){
 	int c = info->contador_livros;
 	
 	if (c >= MAX){
-		printf("Acervo cheio, nao eh possivel adicionar mais livros");
+		printf("\tACERVO CHEIO! \nN?o È possÌvel adicionar mais livros\n");
 		return;
 	}
 
-	printf("Registro %d\n", info->contador_livros);
-	printf("Titulo: ");
+	printf("\tRegistro %d\n", info->contador_livros);
+	printf("TÌtulo: ");
 	fgets(info->titulos[c], 80, stdin);
+	remover_n(info->titulos[c]);
+
 	printf("Autor: ");
 	fgets(info->autores[c], 50, stdin);
-	printf("Codigo: ");
+	remover_n(info->autores[c]);
+
+	printf("CÛdigo: ");
 	fgets(info->codigos[c], 20, stdin);
-	printf("Ano de lancamento: ");
+	remover_n(info->codigos[c]);
+
+	printf("Ano de lanÁamento: ");
 	scanf("%d", &info->anos[c]);
 	getchar();
 	info->contador_livros++;
@@ -102,15 +113,15 @@ void listar(livro *info){
 	int c = info->contador_livros;
 
 	if (c == 0){
-		printf("Nao ha livros no acervo\n");
+		printf("\tN?o h· livros no acervo!\n");
 		return;
 	}
 		
 	for (int i = 0; i < c; i++){
-		printf("\n\tRegistro %d\n:", i);
-		printf("Titulo: %s\n", info->titulos[i]);
+		printf("\n\tRegistro %d:\n", i);
+		printf("TÌtulo: %s\n", info->titulos[i]);
 		printf("Autor: %s\n", info->autores[i]);
-		printf("Codigo: %s\n", info->codigos[i]);
+		printf("CÛdigo: %s\n", info->codigos[i]);
 		printf("Ano: %d\n", info->anos[i]);
 	}	
 }
@@ -119,15 +130,16 @@ void buscar(livro *info){
 	char titulo[80];
 	int existe=0;
 	
-	printf("Insira o titulo que deseja procurar: ");
+	printf("Insira o tÌtulo que deseja procurar: ");
 	fgets(titulo, sizeof(titulo), stdin);
+	remover_n(titulo);
 
 	for (int i = 0; i < info->contador_livros; i++){
 		if (strcmp(titulo, info->titulos[i]) == 0){
 			printf("\tLivro encontrado:\n");
-			printf("Titulo: %s\n", info->titulos[i]);
+			printf("TÌtulo: %s\n", info->titulos[i]);
 			printf("Autor: %s\n", info->autores[i]);
-			printf("Codigo: %s\n", info->codigos[i]);
+			printf("CÛdigo: %s\n", info->codigos[i]);
 			printf("Ano: %d\n", info->anos[i]);
 			existe++;
 			return;
@@ -135,64 +147,76 @@ void buscar(livro *info){
 	}
 
 	if (existe == 0)
-		printf("O livro n√£o foi encontrado\n");
+		printf("\tO livro n?o foi encontrado\n");
 }
 
 void editar(livro *info){
 	char titulo[80];
 	int existe=0;
 
-	printf("Insira o titulo que deseja editar: ");
+	printf("Insira o tÌtulo que deseja editar: ");
 	fgets(titulo, sizeof(titulo), stdin);
+	remover_n(titulo);
 
 	for (int i = 0; i < info->contador_livros; i++){
 		int escolha;
 
 		if (strcmp(titulo, info->titulos[i]) == 0){
-			printf("\tQue dado voce gostaria de alterar?: \n1. Titulo \n2. Autor \n3. Codigo \n4. Ano\n");
+			printf("\tQue dado vocÍ gostaria de alterar?: \n1. TÌtulo \n2. Autor \n3. CÛdigo \n4. Ano\n");
+			printf("Digite sua escolha: ");
 			scanf("%d", &escolha);
 			getchar();
 
 			switch (escolha){
 			case 1:
+				printf("Novo tÌtulo: ");
 				fgets(info->titulos[i], 80, stdin);
+				remover_n(info->titulos[i]);
 				break;
 
 			case 2:
+				printf("Novo nome do autor: ");
 				fgets(info->autores[i], 50, stdin);
+				remover_n(info->autores[i]);
 				break;
 
 			case 3: 
+				printf("Novo cÛdigo: ");
 				fgets(info->codigos[i], 20, stdin);
+				remover_n(info->codigos[i]);
 				break;
 
 			case 4:
+				printf("Novo ano de lanÁamento: ");
 				scanf("%d", &info->anos[i]);
 				getchar();
 				break;
 			
 			default:
-				printf("Opcao invalida");
+				printf("OpÁ?o inv·lida\n");
 				break;
 			}
 			
-			if (escolha >=1 && escolha <=4)
-				printf("Alteracao concluida");
-
-			existe++;
+			if (escolha >=1 && escolha <=4){
+				printf("AlteraÁ?o concluÌda!\n");
+				existe++;
+			}
+				
 		}
 	}
 
 	if(existe ==0)
-		printf("Titulo nao encontrado");
+		printf("\nTÌtulo n?o encontrado\n");
 }
+
 
 void excluir(livro *info){
 	char titulo[80];
 	int existe=0;
 	
-	printf("Insira o titulo que deseja procurar: ");
+	printf("Insira o tÌtulo que deseja excluir: ");
 	fgets(titulo, sizeof(titulo), stdin);
+	remover_n(titulo);
 
 	for (int i = 0; i < info->contador_livros; i++){
 		if (strcmp(titulo, info->titulos[i]) == 0){
@@ -202,14 +226,23 @@ void excluir(livro *info){
 				strcpy(info->codigos[j], info->codigos[j+1]);
 				info->anos[j] = info->anos[j+1];
 				existe++;
-				info->contador_livros--;
-            	printf("Livro excluido com sucesso\n");
 			}
+			printf("\tLivro excluÌdo com sucesso!\n");
+			info->contador_livros--;
 			return;
 		}
 	}
 
 	if (existe == 0)
-		printf("O livro n√£o foi encontrado\n");
+		printf("\tO livro n?o foi encontrado\n");
 
+}
+
+void remover_n(char str[]){
+    for (int i = 0; str[i] != '\0'; i++){
+        if (str[i] == '\n'){
+            str[i] = '\0';
+            break;
+        }
+    }
 }
