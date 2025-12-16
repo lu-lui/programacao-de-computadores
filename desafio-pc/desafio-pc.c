@@ -20,9 +20,9 @@ void cria_lista(livro *info);
 int exibir_menu(void);
 void inserir(livro *info);
 void listar(livro *info);
-void buscar(void);
+void buscar(livro *info);
 void excluir(void);
-void editar();
+void editar(livro *info);
 
 int main(){
     int opcao;
@@ -40,10 +40,10 @@ int main(){
 			listar(&info);
 			break;
 		case 3:
-			buscar();
+			buscar(&info);
 			break;
 		case 4:
-			editar();
+			editar(&info);
 			break;
 		case 5:
 			excluir();
@@ -100,21 +100,85 @@ void inserir(livro *info){
 
 void listar(livro *info){
 	int c = info->contador_livros;
-	
-	for (int i = 0; i <= c; i++){
-		printf("\tab Registro %d:", c);
-		printf("Titulo: %s", info->titulos[i]);
-		printf("Autor: %s", info->autores[c]);
-		printf("Codigo: %s", info->codigos[c]);
-		printf("Ano: %d", info->anos[c]);
+
+	if (c == 0){
+		printf("Nao ha livros no acervo\n");
+		return;
+	}
+		
+	for (int i = 0; i < c; i++){
+		printf("\n\tRegistro %d:", i);
+		printf("Titulo: %s\n", info->titulos[i]);
+		printf("Autor: %s\n", info->autores[i]);
+		printf("Codigo: %s\n", info->codigos[i]);
+		printf("Ano: %d\n", info->anos[i]);
 	}	
 }
-void buscar(void){
 
+void buscar(livro *info){
+	char titulo[80];
+	int existe=0;
+	
+	printf("Insira o titulo que deseja procurar: ");
+	fgets(titulo, sizeof(titulo), stdin);
 
+	for (int i = 0; i < info->contador_livros; i++){
+		if (strcmp(titulo, info->titulos[i]) == 0){
+			printf("\tLivro encontrado:\n");
+			printf("Titulo: %s\n", info->titulos[i]);
+			printf("Autor: %s\n", info->autores[i]);
+			printf("Codigo: %s\n", info->codigos[i]);
+			printf("Ano: %d\n", info->anos[i]);
+			existe++;
+			return;
+		}
+	}
+
+	if (existe == 0)
+		printf("O livro não foi encontrado\n");
 }
-void excluir(void){
 
+void editar(livro *info){
+	char titulo[80];
 
+	printf("Insira o titulo que deseja editar: ");
+	fgets(titulo, sizeof(titulo), stdin);
+
+	for (int i = 0; i < info->contador_livros; i++){
+		int escolha;
+		
+		if (strcmp(titulo, info->titulos[i]) == 0){
+			printf("\tQue dado voce gostaria de alterar?: \n1. Titulo\n 2. Autor\n 3. Codigo 4. Ano\n");
+			scanf("%d", &escolha);
+
+			switch (escolha){
+			case 1:
+				fgets(info->titulos[i], 80, stdin);
+				getchar();
+				break;
+
+			case 2:
+				fgets(info->autores[i], 50, stdin);
+				getchar();
+				break;
+
+			case 3: 
+				fgets(info->codigos[i], 20, stdin);
+				getchar();
+				break;
+
+			case 4:
+				scanf("%d", &info->anos[i]);
+				break;
+			
+			default:
+				printf("Opcao invalida");
+				break;
+			}
+			
+			if (escolha >=1 && escolha >=4)
+				printf("Alteracao concluida");
+		}
+	}
 }
 
