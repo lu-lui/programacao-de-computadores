@@ -1,0 +1,51 @@
+DESAFIO FASE 2
+IMPLEMENTAÇÃO DINÂMICA DO SGB
+
+Disciplina: Programação de Computadores
+Semestre: 2025/2
+
+1. Introdução e Objetivo
+Parabéns por concluir a Fase 1! O protótipo do Sistema de Gerenciamento de Biblioteca (SGB), com alocação estática, demonstrou a lógica funcional e a modularização do código.
+Na Fase 2, o objetivo é evoluir o SGB para uma arquitetura moderna e flexível, utilizando Alocação Dinâmica de Memória e Estruturas de Dados Dinâmicas. Isso permitirá que o sistema gerencie um número ilimitado de livros, superando a restrição de capacidade fixa (50 livros) da primeira fase.
+O foco principal é a correta aplicação de structs, ponteiros complexos, alocação e liberação dinâmica de memória e manipulação de arquivos.
+
+2. Projeto – 2ª Fase
+Para esta fase, o sistema deve ser reconstruído para seguir as seguintes especificações.
+
+2.1 Estrutura de Armazenamento
+O armazenamento dos livros deve ser feito utilizando uma Lista Simplesmente Encadeada. Além disso, devem ser utilizadas estruturas (structs) para encapsular todos os atributos de um livro, que são:
+Título (char[80]): Título do livro.
+Autor (char[50]): Nome do autor do livro.
+Código (char[20]): Código de registro do livro (combinação de números e letras, por exemplo, A2B1).
+Ano de Publicação (int): Ano em que o livro foi publicado.
+
+2.2 Operações do Sistema
+O sistema deve suportar as seguintes operações:
+Carregar Catálogo Inicial: No início da execução, o programa deve abrir o arquivo catalogo_inicial.txt, ler cada livro (com os atributos separados por pipe/barra vertical |) e inseri-los na lista encadeada.
+Inserção via Terminal: Coletar todos os atributos de um livro (Título, Autor, Código e Ano) via terminal. Alocar memória para o novo livro e inseri-lo no início da lista.
+Busca: Encontrar e exibir os dados completos de um livro, pesquisando pelo Título.
+Exclusão: Remover um livro do sistema, buscando pelo Título. DICA: A memória deve ser liberada.
+Edição: Modificar informações de um livro após buscá-lo pelo Título.
+Exportar Catálogo para Arquivo: Percorrer a lista encadeada e escrever os dados de todos os livros em um novo arquivo de texto chamado catalogo_exportado.txt. Utilize o pipe/barra vertical (|) para separar os atributos do livro.
+Sair e Liberar Memória: Antes de encerrar, a função de saída deve percorrer toda a lista e liberar a memória de todos os nós restantes.
+
+2.3 Menu Inicial
+O sistema deve apresentar um menu inicial interativo, que permaneça em loop até que o usuário escolha a opção Sair. O menu deve conter as seguintes opções:
+1. Inserir Livro: Coletar e armazenar os quatro atributos de um livro.
+2. Listar Livros: Percorrer a lista e exibir os dados de todos os livros.
+3. Buscar por Título: Solicitar ao usuário o título a ser buscado, procurá-lo na lista e exibir seus atributos. Caso o livro não exista, exibir a mensagem: “Título não encontrado”.
+4. Editar Livro: Após encontrar o livro pelo título, o usuário deve escolher qual informação deseja alterar: (1) Título, (2) Autor, (3) Código ou (4) Ano. O programa deve solicitar o novo valor, atualizar a base de dados e exibir a mensagem: “Alteração Concluída”.
+5. Excluir Livro: Solicitar o título, remover o nó da lista e liberar a memória.
+6. Exportar Catálogo para Arquivo TXT: Percorrer a lista encadeada e escrever os dados de todos os livros no arquivo catalogo_exportado.txt.
+7. Sair: Percorrer a lista e liberar a memória de todos os nós.
+
+3. Requisitos
+A implementação deve demonstrar domínio dos seguintes conceitos:
+Estruturas de Dados Dinâmicas: Uso de lista simplesmente encadeada para armazenamento.
+Structs: Definição e uso da struct Livro para unificar os dados.
+Alocação Dinâmica: Uso correto de malloc para criar novos nós e free para liberar nós excluídos ou na finalização do programa.
+Manipulação de Arquivos: Uso de FILE *, fopen, fclose e funções de leitura e escrita.
+Ponteiros Complexos: Manipulação de ponteiros para struct (Livro *) para gerenciar o encadeamento e uso de ponteiro para ponteiro quando necessário.
+
+4. Entrega
+O cabeçalho do arquivo .c deve conter seu nome e sua matrícula, e o nome do arquivo .c deve conter seu nome (formato: nome_sobrenome.c).
