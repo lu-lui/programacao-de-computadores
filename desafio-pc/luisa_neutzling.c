@@ -13,23 +13,10 @@ typedef struct Livro{
     struct Livro *prox;
 } Livro;
 
-
-int main(){
-
-	Livro *lista = NULL;
-    /*
-    int f = fopen("catalogoinicial.txt", "r+");
-    
-    
-    */
-}
-
-//DESAFIO PC: SISTEMA DE GERENCIAMENTO DE BIBLIOTECA - PARTE 1
-// NOME: Luísa Passos Neutzling MATR�CULA: 25101673
-
 int exibir_menu(void);
-void inserir(livro *info);
-void listar(livro *info);
+Livro *cria(void);
+void inserir(Livro *p);
+void listar(Livro *info);
 void buscar(livro *info);
 void editar(livro *info);
 void excluir(livro *info);
@@ -39,20 +26,26 @@ void sair(livro *info);
 
 int main(){
 
-    int opcao;
-	livro info;
+	int opcao;
+	Livro *lista;
 
-   for (;;) {
+	lista = cria();
+
+	/*
+    int f = fopen("catalogoinicial.txt", "r+");
+    */
+
+	for (;;) {
 		opcao = exibir_menu();
 		switch (opcao) {
 		case 1:
-			inserir(&info);
+			inserir(lista);
 			break;
 		case 2:
-			listar(&info);
+			listar(lista);
 			break;
 		case 3:
-			buscar(&info);
+			buscar(lista);
 			break;
 		case 4:
 			editar(&info);
@@ -66,10 +59,17 @@ int main(){
         case 7:
 			sair(&info);
 			break;
-        case 
 		}
 	}
 	return 0;
+}
+
+struct Livro *cria(void){
+    struct Livro *start;
+
+    start = (struct Livro *) malloc(sizeof(struct Livro));
+    start->prox = NULL; 
+    return start;
 }
 
 int exibir_menu(void){
@@ -91,51 +91,49 @@ int exibir_menu(void){
 	return c;
 }
 
-void inserir(livro *info){
-	int c = info->contador_livros;
-	
-	if (c >= MAX){
-		printf("\tACERVO CHEIO! \nNão é possível adicionar mais livros\n");
-		return;
-	}
+void inserir(Livro *p){
+	Livro *novo;
 
-	printf("\tRegistro %d\n", info->contador_livros);
+	novo = (Livro *)malloc(sizeof(Livro));
+
 	printf("Título: ");
-	fgets(info->titulos[c], 80, stdin);
-	remover_n(info->titulos[c]);
+	fgets(novo->titulo, 80, stdin);
+	remover_n(novo->titulo);
 
 	printf("Autor: ");
-	fgets(info->autores[c], 50, stdin);
-	remover_n(info->autores[c]);
+	fgets(novo->autor, 50, stdin);
+	remover_n(novo->autor);
 
 	printf("Código: ");
-	fgets(info->codigos[c], 20, stdin);
-	remover_n(info->codigos[c]);
+	fgets(novo->codigo, 20, stdin);
+	remover_n(novo->codigo);
 
 	printf("Ano de lançamento: ");
-	scanf("%d", &info->anos[c]);
+	scanf("%d", &novo->ano);
 	getchar();
-	info->contador_livros++;
+	
+	novo->prox = p->prox;
+    p->prox = novo;
 }
 
-void listar(livro *info){
-	int c = info->contador_livros;
+void listar(Livro *info){
+	Livro *p;
 
-	if (c == 0){
+	if (info->prox == NULL){
 		printf("\tNão há livros no acervo!\n");
 		return;
 	}
 		
-	for (int i = 0; i < c; i++){
-		printf("\n\tRegistro %d:\n", i);
-		printf("Título: %s\n", info->titulos[i]);
-		printf("Autor: %s\n", info->autores[i]);
-		printf("Código: %s\n", info->codigos[i]);
-		printf("Ano: %d\n", info->anos[i]);
+	for (p = info->prox; p != NULL; p = p->prox){
+		printf("Título: %s\n", p->titulo);
+		printf("Autor: %s\n", p->autor);
+		printf("Código: %s\n", p->codigo);
+		printf("Ano: %d\n", p->ano);
 	}	
-}
+}  //FAZER O AS INFORMAÇÕES SEREM MOSTRADAS ENTRE " | " !!!!!
 
-void buscar(livro *info){
+void buscar(Livro *info){
+	Livro *p;
 	char titulo[80];
 	int existe=0;
 	
@@ -143,20 +141,21 @@ void buscar(livro *info){
 	fgets(titulo, sizeof(titulo), stdin);
 	remover_n(titulo);
 
-	for (int i = 0; i < info->contador_livros; i++){
-		if (strcmp(titulo, info->titulos[i]) == 0){
+	for (p = info->prox; p != NULL; p = p->prox){
+		if (strcmp(titulo, p->titulo) == 0){
 			printf("\tLivro encontrado:\n");
-			printf("Título: %s\n", info->titulos[i]);
-			printf("Autor: %s\n", info->autores[i]);
-			printf("Código: %s\n", info->codigos[i]);
-			printf("Ano: %d\n", info->anos[i]);
-			existe++;
-			return;
+			printf("\tLivro encontrado:\n");
+            printf("Título: %s\n", p->titulo);
+            printf("Autor: %s\n", p->autor);
+            printf("Código: %s\n", p->codigo);
+            printf("Ano: %d\n", p->ano);
+            existe++;
+			break;
 		}
 	}
 
 	if (existe == 0)
-		printf("\tO livro n?o foi encontrado\n");
+		printf("\tO livro não foi encontrado!\n");
 }
 
 void editar(livro *info){
