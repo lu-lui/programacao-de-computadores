@@ -16,6 +16,7 @@ typedef struct Livro{
 
 int main(){
 
+	Livro *lista = NULL;
     /*
     int f = fopen("catalogoinicial.txt", "r+");
     
