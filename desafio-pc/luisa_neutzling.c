@@ -15,14 +15,15 @@ typedef struct Livro{
 
 int exibir_menu(void);
 Livro *cria(void);
-void inserir(Livro *p);
+void carregar_catalogo(Livro *info); 
+void inserir(Livro *p); 
 void listar(Livro *info);
-void buscar(livro *info);
-void editar(livro *info);
-void excluir(livro *info);
+void buscar(Livro *info);
+void editar(Livro *info);
+void excluir(Livro *info);
 void remover_n(char str[]);
-void exportar(livro *info);
-void sair(livro *info);
+void exportar(Livro *info);
+void sair(Livro *info);
 
 int main(){
 
@@ -31,9 +32,7 @@ int main(){
 
 	lista = cria();
 
-	/*
-    int f = fopen("catalogoinicial.txt", "r+");
-    */
+	carregar_catalogo(lista); 
 
 	for (;;) {
 		opcao = exibir_menu();
@@ -48,7 +47,7 @@ int main(){
 			buscar(lista);
 			break;
 		case 4:
-			editar(&info);
+			editar(lista);
 			break;
 		case 5:
 			excluir(&info);
@@ -64,10 +63,18 @@ int main(){
 	return 0;
 }
 
-struct Livro *cria(void){
-    struct Livro *start;
+void carregar_catalogo(Livro *info){
+	FILE *arquivo;
+	arquivo = fopen("catalogo_inicial.txt", "r+");
+	if (arquivo == NULL){
+    printf("Erro na abertura");
+    exit(1);
+} 
 
-    start = (struct Livro *) malloc(sizeof(struct Livro));
+Livro *cria(void){
+    Livro *start;
+
+    start = (Livro *) malloc(sizeof(Livro));
     start->prox = NULL; 
     return start;
 }
@@ -91,7 +98,7 @@ int exibir_menu(void){
 	return c;
 }
 
-void inserir(Livro *p){
+void inserir(Livro *info){
 	Livro *novo;
 
 	novo = (Livro *)malloc(sizeof(Livro));
@@ -112,8 +119,8 @@ void inserir(Livro *p){
 	scanf("%d", &novo->ano);
 	getchar();
 	
-	novo->prox = p->prox;
-    p->prox = novo;
+	novo->prox = info->prox;
+    info->prox = novo;
 }
 
 void listar(Livro *info){
@@ -144,7 +151,6 @@ void buscar(Livro *info){
 	for (p = info->prox; p != NULL; p = p->prox){
 		if (strcmp(titulo, p->titulo) == 0){
 			printf("\tLivro encontrado:\n");
-			printf("\tLivro encontrado:\n");
             printf("Título: %s\n", p->titulo);
             printf("Autor: %s\n", p->autor);
             printf("Código: %s\n", p->codigo);
@@ -158,70 +164,72 @@ void buscar(Livro *info){
 		printf("\tO livro não foi encontrado!\n");
 }
 
-void editar(livro *info){
+void editar(Livro *info){
+	Livro *p;
 	char titulo[80];
 	int existe=0;
+	int escolha;
 
 	printf("Insira o título que deseja editar: ");
 	fgets(titulo, sizeof(titulo), stdin);
 	remover_n(titulo);
 
-	for (int i = 0; i < info->contador_livros; i++){
-		int escolha;
+	for (p = info->prox; p != NULL; p = p->prox){
 
-		if (strcmp(titulo, info->titulos[i]) == 0){
-			printf("\tQue dado você gostaria de alterar? \n1. T�tulo \n2. Autor \n3. C�digo \n4. Ano\n");
+		if (strcmp(titulo, p->titulo) == 0){
+			printf("\tQue dado você gostaria de alterar? \n1. Título \n2. Autor \n3. Código \n4. Ano\n");
 			printf("Digite sua escolha: ");
 			scanf("%d", &escolha);
 			getchar();
 
 			switch (escolha){
 				case 1:
-					printf("Novo t�tulo: ");
-					fgets(info->titulos[i], 80, stdin);
-					remover_n(info->titulos[i]);
+					printf("Novo título: ");
+					fgets(p->titulo, 80, stdin);
+					remover_n(p->titulo);
 					break;
 
 				case 2:
 					printf("Novo nome do autor: ");
-					fgets(info->autores[i], 50, stdin);
-					remover_n(info->autores[i]);
+					fgets(p->autor, 50, stdin);
+					remover_n(p->autor);
 					break;
 
 				case 3: 
-					printf("Novo c�digo: ");
-					fgets(info->codigos[i], 20, stdin);
-					remover_n(info->codigos[i]);
+					printf("Novo código: ");
+					fgets(p->codigo, 20, stdin);
+					remover_n(p->codigo);
 					break;
 
 				case 4:
-					printf("Novo ano de lan�amento: ");
-					scanf("%d", &info->anos[i]);
+					printf("Novo ano de lançamento: ");
+					scanf("%d", &p->ano);
 					getchar();
 					break;
 				
 				default:
-					printf("Op�?o inv�lida\n");
-					break;
+					printf("Opção inválida\n");
+					return;
 			}
 			
 			if (escolha >=1 && escolha <=4){
-				printf("Altera�?o conclu�da!\n");
+				printf("Alteração concluída!\n");
 				existe++;
+				break;
 			}	
 		}
 	}
 
 	if(existe ==0)
-		printf("\nT�tulo n?o encontrado\n");
+		printf("\nTítulo não encontrado\n");
 }
 
 
-void excluir(livro *info){
+void excluir(Livro *info){
 	char titulo[80];
 	int existe=0;
 	
-	printf("Insira o t�tulo que deseja excluir: ");
+	printf("Insira o título que deseja excluir: ");
 	fgets(titulo, sizeof(titulo), stdin);
 	remover_n(titulo);
 
