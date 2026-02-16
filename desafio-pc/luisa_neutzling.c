@@ -15,15 +15,15 @@ typedef struct Livro{
 
 int exibir_menu(void);
 Livro *cria(void);
-void carregar_catalogo(Livro *info); 
+void carregar_catalogo(Livro *lista); 
 void inserir(Livro *p); 
-void listar(Livro *info);
-void buscar(Livro *info);
-void editar(Livro *info);
-void excluir(Livro *info);
+void listar(Livro *lista);
+void buscar(Livro *lista);
+void editar(Livro *lista);
+void excluir(Livro *lista);
 void remover_n(char str[]);
-void exportar(Livro *info);
-void sair(Livro *info);
+void exportar(Livro *lista);
+void sair(Livro *lista);
 
 int main(){
 
@@ -32,7 +32,7 @@ int main(){
 
 	lista = cria();
 
-	carregar_catalogo(lista); 
+	carregar_catalogo(lista);
 
 	for (;;) {
 		opcao = exibir_menu();
@@ -50,26 +50,49 @@ int main(){
 			editar(lista);
 			break;
 		case 5:
-			excluir(&info);
+			excluir(lista);
 			break;
 		case 6:
-			exportar(&info);
+			exportar(lista);
 			break;
         case 7:
-			sair(&info);
+			sair(lista);
 			break;
 		}
 	}
 	return 0;
 }
 
-void carregar_catalogo(Livro *info){
+void carregar_catalogo(Livro *lista){
 	FILE *arquivo;
+    char linha[200];
+    Livro *novo;
+
 	arquivo = fopen("catalogo_inicial.txt", "r+");
 	if (arquivo == NULL){
-    printf("Erro na abertura");
-    exit(1);
-} 
+		printf("Erro na abertura");
+		return;
+	}
+	
+	printf("\tCATÁLOGO INICIAL \nTÍTULO | AUTOR | CÓDIGO | ANO DE LANÇAMENTO\n");
+	
+	while (fgets(linha, sizeof(linha), arquivo) != NULL){
+		remover_n(linha);
+
+		novo = (Livro *) malloc(sizeof(Livro));
+
+		// Lê os campos da linha já carregada
+		sscanf(linha, "%79[^|]|%49[^|]|%19[^|]|%d", novo->titulo, novo->autor, novo->codigo, &novo->ano);
+
+		novo->prox = lista->prox;
+		lista->prox = novo;
+
+		printf("%s | %s | %s | %d\n", novo->titulo, novo->autor, novo->codigo, novo->ano);
+	}
+
+    fclose(arquivo);
+    printf("\nCatalogo carregado com sucesso!\n");
+}
 
 Livro *cria(void){
     Livro *start;
@@ -98,7 +121,7 @@ int exibir_menu(void){
 	return c;
 }
 
-void inserir(Livro *info){
+void inserir(Livro *lista){
 	Livro *novo;
 
 	novo = (Livro *)malloc(sizeof(Livro));
@@ -119,27 +142,26 @@ void inserir(Livro *info){
 	scanf("%d", &novo->ano);
 	getchar();
 	
-	novo->prox = info->prox;
-    info->prox = novo;
+	novo->prox = lista->prox;
+    lista->prox = novo;
 }
 
-void listar(Livro *info){
+void listar(Livro *lista){
 	Livro *p;
 
-	if (info->prox == NULL){
+	if (lista->prox == NULL){
 		printf("\tNão há livros no acervo!\n");
 		return;
 	}
 		
-	for (p = info->prox; p != NULL; p = p->prox){
-		printf("Título: %s\n", p->titulo);
-		printf("Autor: %s\n", p->autor);
-		printf("Código: %s\n", p->codigo);
-		printf("Ano: %d\n", p->ano);
-	}	
-}  //FAZER O AS INFORMAÇÕES SEREM MOSTRADAS ENTRE " | " !!!!!
+	printf("\tLIVROS CADASTRADOS \nTÍTULO | AUTOR | CÓDIGO | ANO DE LANÇAMENTO\n");
 
-void buscar(Livro *info){
+	for (p = lista->prox; p != NULL; p = p->prox){
+		printf("%s | %s | %s | %d", p->titulo, p->autor, p->codigo, p->ano);
+	}	
+} 
+
+void buscar(Livro *lista){
 	Livro *p;
 	char titulo[80];
 	int existe=0;
@@ -148,7 +170,7 @@ void buscar(Livro *info){
 	fgets(titulo, sizeof(titulo), stdin);
 	remover_n(titulo);
 
-	for (p = info->prox; p != NULL; p = p->prox){
+	for (p = lista->prox; p != NULL; p = p->prox){
 		if (strcmp(titulo, p->titulo) == 0){
 			printf("\tLivro encontrado:\n");
             printf("Título: %s\n", p->titulo);
@@ -164,7 +186,7 @@ void buscar(Livro *info){
 		printf("\tO livro não foi encontrado!\n");
 }
 
-void editar(Livro *info){
+void editar(Livro *lista){
 	Livro *p;
 	char titulo[80];
 	int existe=0;
@@ -174,7 +196,7 @@ void editar(Livro *info){
 	fgets(titulo, sizeof(titulo), stdin);
 	remover_n(titulo);
 
-	for (p = info->prox; p != NULL; p = p->prox){
+	for (p = lista->prox; p != NULL; p = p->prox){
 
 		if (strcmp(titulo, p->titulo) == 0){
 			printf("\tQue dado você gostaria de alterar? \n1. Título \n2. Autor \n3. Código \n4. Ano\n");
@@ -224,31 +246,51 @@ void editar(Livro *info){
 		printf("\nTítulo não encontrado\n");
 }
 
-
-void excluir(Livro *info){
+void excluir(Livro *lista){
+	Livro *p, *q;
 	char titulo[80];
 	int existe=0;
+
+	p = lista;        
+    q = lista->prox;
 	
 	printf("Insira o título que deseja excluir: ");
 	fgets(titulo, sizeof(titulo), stdin);
 	remover_n(titulo);
 
-	for (int i = 0; i < info->contador_livros; i++){
-		if (strcmp(titulo, info->titulos[i]) == 0){
-			for (int j = i; j < info->contador_livros-1; j++){
-				strcpy(info->titulos[j], info->titulos[j+1]);
-				strcpy(info->autores[j], info->autores[j+1]);
-				strcpy(info->codigos[j], info->codigos[j+1]);
-				info->anos[j] = info->anos[j+1];
-			}
-			printf("\tLivro exclu�do com sucesso!\n");
-			info->contador_livros--;
-			return;
-		}
-	}
+    while (q != NULL && strcmp(q->titulo, titulo) != 0){
+        p = q;
+        q = q->prox;
+    }
 
-	if (existe == 0)
-		printf("\tO livro n?o foi encontrado\n");
+    if (q != NULL){
+        p->prox = q->prox;
+        free(q);
+        printf("\tLivro excluído com sucesso!\n");
+        existe = 1;
+    }
+
+    if (existe == 0){
+        printf("\tO livro não foi encontrado\n");
+    }
+}
+
+void exportar(Livro *info){
+    FILE *arquivo;
+    Livro *p;
+
+    arquivo = fopen("catalogo_exportado.txt", "w");
+    if (arquivo == NULL){
+        printf("Erro ao criar o arquivo!\n");
+        return;
+    }
+
+    for (p = info->prox; p != NULL; p = p->prox){
+        fprintf(arquivo, "%s|%s|%s|%d\n", p->titulo, p->autor, p->codigo, p->ano);
+    }
+
+    fclose(arquivo);
+    printf("Catálogo exportado com sucesso!\n");
 }
 
 void remover_n(char str[]){
@@ -258,4 +300,18 @@ void remover_n(char str[]){
             break;
         }
     }
+}
+
+void sair(Livro *lista){
+    Livro *p = lista;   
+    Livro *temp;           
+
+    while (p != NULL){
+        temp = p->prox;   
+        free(p);        
+        p = temp;          
+    }
+
+    printf("Execussão encerrada\n");
+    exit(0);
 }
