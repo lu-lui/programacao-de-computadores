@@ -74,7 +74,16 @@ void carregar_catalogo(Livro *lista){
 	
 	printf("\tCATÁLOGO INICIAL \nTÍTULO | AUTOR | CÓDIGO | ANO DE LANÇAMENTO\n");
 
-	while ( (novo = malloc(sizeof(Livro))) != NULL && fscanf(arquivo, "%79[^|]|%49[^|]|%19[^|]|%d\n", novo->titulo, novo->autor, novo->codigo, &novo->ano) == 4 ){
+	while (1){
+        novo = malloc(sizeof(Livro));
+        if (novo == NULL) break;
+
+        if (fscanf(arquivo, "%79[^|]|%49[^|]|%19[^|]|%d\n",
+                   novo->titulo, novo->autor, novo->codigo, &novo->ano) != 4){
+            free(novo);
+            break;
+        }
+
 		novo->prox = lista->prox;
 		lista->prox = novo;
 
@@ -82,7 +91,6 @@ void carregar_catalogo(Livro *lista){
 	}
 
     fclose(arquivo);
-    printf("\nCatalogo carregado com sucesso!\n");
 }
 
 Livro *cria(void){

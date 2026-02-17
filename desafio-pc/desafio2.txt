@@ -1,67 +1,3 @@
-<<<<<<< HEAD
-DESAFIO FASE 2:
-IMPLEMENTAÇÃO DINÂMICA DO SGB
-Disciplina de Programação de Computadores
-Semestre 2025/2
-
-    1 Introdução e Objetivo
-Parabéns por concluir a Fase 1! O protótipo do Sistema de Gerenciamento de Biblioteca (SGB) com alocação estática demonstrou a lógica funcional e a modularização do código.
-Na Fase 2, o objetivo é evoluir o SGB para uma arquitetura moderna e flexível, utilizando Alocação Dinâmica de Memória e Estruturas de Dados Dinâmicas. Isso permitirá que o sistema gerencie um número ilimitado de livros, superando a restrição de capacidade fixa (50 livros) da primeira fase.
-O foco principal é na correta aplicação de structs, ponteiros complexos, alocação/liberação dinâmica e manipulação de arquivos.
-
-    2 Projeto – 2ª Fase
-Para esta fase, o sistema deve ser reconstruído para seguir as seguintes especificações.
-
-    2.1 Estrutura de Armazenamento
-O armazenamento dos livros deve ser feito utilizando uma Lista Simplesmente Encadeada. Além disso, você deve utilizar estruturas (structs) para encapsular todos os atributos de um livro, os quais são:
-Título (char[80]): Título do Livro.
-Autor (char[50]): Nome do autor do livro.
-Código (char[20]): Código de registro do livro (combinação de números com letras, por exemplo, A2B1).
-Ano de Publicação (int): Ano em que o livro foi publicado.
-
-    2.2 Operações do Sistema
-O sistema deve suportar as seguintes operações:
-• Carregar Catálogo Inicial: No início da execução, o programa deve abrir o arquivo catalogo inicial.txt, ler cada livro (os atributos do livro estão separados por pipe/barra vertical ( | )) e inserir na lista encadeada.
-• Inserção via terminal: Coletar todos os atributos de um livro (Título, Autor, Código, Ano) via terminal. Alocar memória para o novo livro e inseri-lo no início da lista.
-• Busca: Encontrar e exibir os dados completos de um livro, pesquisando pelo Título.
-• Exclusão: Remover um livro do sistema, buscando pelo Título.
-DICA: A MEMÓRIA DEVE SER LIBERADA.
-• Edição: Modificar informações de um livro após buscá-lo pelo Título.
-• Exportar Catálogo para Arquivo: Percorrer a Lista Encadeada e escrever os dados de todos os livros em um novo arquivo de texto chamado catalogo exportado.txt. Utilize o pipe/barra vertical ( | ) para separar os atributos do livro.
-• Sair e Liberar Memória: Antes de encerrar, a função de saída deve percorrer toda a lista e liberar a memória de todos os nós restantes.
-
-2.3 Menu Inicial
-O sistema deve apresentar um menu inicial interativo, que fique em loop até que o usuário escolha Sair.
-O Menu deve conter as seguintes opções:
-Inserir Livro: Coletar e armazenar os 4 atributos de um livro.
-Listar Livros: Percorrer a lista e exibir os dados de todos os livros.
-Buscar por Título: Perguntar ao usuário qual título deve ser buscado, buscá-lo na lista e exibir os seus atributos (caso o livro esteja no sistema). Se não existir, enviar a mensagem: “Título não encontrado”.
-Editar Livro: Após encontrar o livro pelo Título, o usuário deve ser perguntado especificamente sobre qual informação deseja alterar (1 - Título, 2 - Autor, 3 - Código ou 4 - Ano) e o programa deve solicitar o novo valor, alterar na base de dados e enviar uma mensagem de operação concluída: “Alteração Concluída”.
-Excluir Livro: Solicitar o Título, remover o nó da lista e liberar a memória.
-Exportar Catálogo para Arquivo txt: O sistema deve percorrer a Lista Encadeada e escrever os dados de todos os livros em um novo arquivo de texto chamado catalogo exportado.txt.
-Sair: Percorrer a lista e liberar a memória de todos os nós.
-
-3 Requisitos
-A implementação deve demonstrar o domínio dos seguintes conceitos:
-Estruturas de Dados Dinâmicas: Uso de Lista Simplesmente Encadeada para armazenamento.
-Structs: Definição e uso da struct Livro para unificar os dados.
-Alocação Dinâmica: Uso correto de malloc para criar novos nós e free para liberar nós excluídos ou na finalização do programa.
-Manipulação de Arquivos: Uso de FILE *, fopen, fclose e funções de leitura/escrita.
-Ponteiros Complexos: Manipulação de ponteiros para a struct (Livro *) para gerenciar o encadeamento e uso de ponteiro para ponteiro quando necessário.
-
-4 Entrega
-O cabeçalho do arquivo .c deve conter o seu nome e a sua matrícula, e o nome do arquivo .c deve conter o seu nome (nome sobrenome.c), e deve ser enviado para o email abvahnt@inf.ufpel.edu.br até o dia 18/02/2025.
-
-5 Estrutura do Desafio
-O Desafio Final está dividido em duas fases distintas.
-A primeira fase (Fase 1) já deve ter sido entregue.
-A segunda fase (Fase 2) deve ser desenvolvida até o prazo estabelecido.
-
-Pontuação
-O Desafio Final vale 1,0 ponto extra.
-• Cada fase vale 0,5 ponto.
-• Para obter o ponto extra completo (1,0), é obrigatória a entrega de ambas as fases do desafio.
-=======
 DESAFIO FASE 2
 IMPLEMENTAÇÃO DINÂMICA DO SGB
 
@@ -113,4 +49,3 @@ Ponteiros Complexos: Manipulação de ponteiros para struct (Livro *) para geren
 
 4. Entrega
 O cabeçalho do arquivo .c deve conter seu nome e sua matrícula, e o nome do arquivo .c deve conter seu nome (formato: nome_sobrenome.c).
->>>>>>> 7d2092432fdbf93e64671663cffa065f1a27bceb

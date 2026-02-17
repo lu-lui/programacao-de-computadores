@@ -1,4 +1,8 @@
-chapeuzinho vermelho|luisa|123|2026
-Cachorro tobi|luisa|123|2026
-oi|luisa|133|2027
-chuchu|oioi|1234|122
+Cinderela|Charles Perrault|001|1697
+Branca de Neve|Irmãos Grimm|002|1812
+A Bela Adormecida|Charles Perrault|003|1697
+Rapunzel|Irmãos Grimm|004|1812
+João e o Pé de Feijão|Joseph Jacobs|005|1890
+A Bela e a Fera|Gabrielle-Suzanne Barbot de Villeneuve|006|1740
+O Patinho Feio|Hans Christian Andersen|007|1843
+Chapeuzinho Vermelho|Charles Perrault|008|1697
