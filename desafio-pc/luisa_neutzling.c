@@ -26,7 +26,6 @@ void exportar(Livro *lista);
 void sair(Livro *lista);
 
 int main(){
-
 	int opcao;
 	Livro *lista;
 
@@ -65,7 +64,6 @@ int main(){
 
 void carregar_catalogo(Livro *lista){
 	FILE *arquivo;
-    char linha[200];
     Livro *novo;
 
 	arquivo = fopen("catalogo_inicial.txt", "r+");
@@ -75,15 +73,8 @@ void carregar_catalogo(Livro *lista){
 	}
 	
 	printf("\tCATÁLOGO INICIAL \nTÍTULO | AUTOR | CÓDIGO | ANO DE LANÇAMENTO\n");
-	
-	while (fgets(linha, sizeof(linha), arquivo) != NULL){
-		remover_n(linha);
 
-		novo = (Livro *) malloc(sizeof(Livro));
-
-		// Lê os campos da linha já carregada
-		sscanf(linha, "%79[^|]|%49[^|]|%19[^|]|%d", novo->titulo, novo->autor, novo->codigo, &novo->ano);
-
+	while ( (novo = malloc(sizeof(Livro))) != NULL && fscanf(arquivo, "%79[^|]|%49[^|]|%19[^|]|%d\n", novo->titulo, novo->autor, novo->codigo, &novo->ano) == 4 ){
 		novo->prox = lista->prox;
 		lista->prox = novo;
 
@@ -95,11 +86,11 @@ void carregar_catalogo(Livro *lista){
 }
 
 Livro *cria(void){
-    Livro *start;
+    Livro *inicio;
 
-    start = (Livro *) malloc(sizeof(Livro));
-    start->prox = NULL; 
-    return start;
+    inicio = (Livro *) malloc(sizeof(Livro));
+    inicio->prox = NULL; 
+    return inicio;
 }
 
 int exibir_menu(void){
@@ -116,6 +107,10 @@ int exibir_menu(void){
 		printf("==================\n");
 		printf("Digite sua escolha: ");
 		scanf("%d", &c);
+
+		if (c <= 0 || c > 7)
+			printf("Opção inválida!");
+		
 	} while (c <= 0 || c > 7);
 	getchar();
 	return c;
@@ -156,9 +151,8 @@ void listar(Livro *lista){
 		
 	printf("\tLIVROS CADASTRADOS \nTÍTULO | AUTOR | CÓDIGO | ANO DE LANÇAMENTO\n");
 
-	for (p = lista->prox; p != NULL; p = p->prox){
-		printf("%s | %s | %s | %d", p->titulo, p->autor, p->codigo, p->ano);
-	}	
+	for (p = lista->prox; p != NULL; p = p->prox)
+		printf("%s | %s | %s | %d\n", p->titulo, p->autor, p->codigo, p->ano);	
 } 
 
 void buscar(Livro *lista){
@@ -172,11 +166,9 @@ void buscar(Livro *lista){
 
 	for (p = lista->prox; p != NULL; p = p->prox){
 		if (strcmp(titulo, p->titulo) == 0){
-			printf("\tLivro encontrado:\n");
-            printf("Título: %s\n", p->titulo);
-            printf("Autor: %s\n", p->autor);
-            printf("Código: %s\n", p->codigo);
-            printf("Ano: %d\n", p->ano);
+			printf("\tLivro encontrado: \nTÍTULO | AUTOR | CÓDIGO | ANO DE LANÇAMENTO\n");
+			printf("%s | %s | %s | %d\n", p->titulo, p->autor, p->codigo, p->ano);
+
             existe++;
 			break;
 		}
@@ -200,9 +192,15 @@ void editar(Livro *lista){
 
 		if (strcmp(titulo, p->titulo) == 0){
 			printf("\tQue dado você gostaria de alterar? \n1. Título \n2. Autor \n3. Código \n4. Ano\n");
-			printf("Digite sua escolha: ");
-			scanf("%d", &escolha);
-			getchar();
+			do {
+				printf("Digite sua escolha: ");
+				scanf("%d", &escolha);
+				getchar();
+
+				if (escolha <=0 || escolha > 4)
+					printf("Opção inválida\n");
+				
+			} while (escolha <= 0 || escolha > 4);
 
 			switch (escolha){
 				case 1:
@@ -228,10 +226,6 @@ void editar(Livro *lista){
 					scanf("%d", &p->ano);
 					getchar();
 					break;
-				
-				default:
-					printf("Opção inválida\n");
-					return;
 			}
 			
 			if (escolha >=1 && escolha <=4){
@@ -270,9 +264,8 @@ void excluir(Livro *lista){
         existe = 1;
     }
 
-    if (existe == 0){
+    if (existe == 0)
         printf("\tO livro não foi encontrado\n");
-    }
 }
 
 void exportar(Livro *info){
@@ -285,9 +278,8 @@ void exportar(Livro *info){
         return;
     }
 
-    for (p = info->prox; p != NULL; p = p->prox){
+    for (p = info->prox; p != NULL; p = p->prox)
         fprintf(arquivo, "%s|%s|%s|%d\n", p->titulo, p->autor, p->codigo, p->ano);
-    }
 
     fclose(arquivo);
     printf("Catálogo exportado com sucesso!\n");
