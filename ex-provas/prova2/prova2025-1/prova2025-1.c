@@ -33,15 +33,15 @@ int main() {
 }
 
 struct lfrutas *cria(void){
-    struct lfrutas *cabeca;
+    struct lfrutas *lista;
 
-    cabeca = (struct lfrutas *)malloc(sizeof(struct lfrutas));
-    cabeca->prox = NULL;
-    return cabeca;
+    lista = (struct lfrutas *)malloc(sizeof(struct lfrutas));
+    lista->prox = NULL;
+    return lista;
 }
 
 void carrega(struct lfrutas *lista){
-    struct lfrutas *p;
+    struct lfrutas *novo, *ant, *atual;;
     FILE *arquivo;
 
     arquivo = fopen("entrada.txt", "r");
@@ -50,20 +50,28 @@ void carrega(struct lfrutas *lista){
 		return;
 	}
 
+
     while(1){
-        p = (struct lfrutas *)malloc(sizeof(struct lfrutas));
-        if (p == NULL) 
+        novo = (struct lfrutas *)malloc(sizeof(struct lfrutas));
+        if (novo == NULL) 
             break;
 
-        if(fscanf(arquivo, "%99[^;];%99[^;];%d;%d", p->nome, p->tipo, &p->horas_frio_min, &p->horas_frio_max) != 4){
-            free(p);
+        if(fscanf(arquivo, "%99[^;];%99[^;];%d;%d", novo->nome, novo->tipo, &novo->horas_frio_min, &novo->horas_frio_max) != 4){
+            free(novo);
             break;
         }
 
-        p->prox = lista->prox;
-        lista->prox = p;
-    }
+        ant = lista;
+        atual = lista->prox;
 
+        while (atual != NULL && strcmp(atual->nome, novo->nome) < 0){
+            ant = atual;
+            atual = atual->prox;
+        }
+        
+        ant->prox = novo;
+        novo->prox = atual;    
+    }
     fclose(arquivo);
 }
 
@@ -77,6 +85,4 @@ void salva(struct lfrutas *lista){
         fprintf(arquivo, "%s;%s;%d;%d", p->nome, p->tipo, p->horas_frio_min, p->horas_frio_max);
     
     fclose(arquivo);
-
-    //acho que precisa fazer um whhile pro free
 }
