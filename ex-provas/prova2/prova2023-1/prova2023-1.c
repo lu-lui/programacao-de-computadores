@@ -1,0 +1,4 @@
+/*Você implementará um programa que classifica pontos que estão dispostos em um espaço bidimensional.
+Todos os pontos estão distribuídos em 4 (quatro) quadrantes, representados por Q1, Q2, Q3 e Q4.
+A entrada do programa consiste de um arquivo texto com um ou mais pares de inteiros, correspondendo cada par à coordenada (x,y) de um ponto, conforme o exemplo de entrada, apresentado abaixo. Não há limite da quantidade de pontos e não há informação desta quantidade.
+O programa deve ler este arquivo e cada ponto deve ser armazenado em quatro listas encadeadas simples com cabeça, uma lista para cada quadrante. O programa deve decidir a qual quadrante o ponto pertence e grava as coordenadas do ponto, na mesma ordem de entrada, em um arquivo texto (observe o exemplo de saída).*/

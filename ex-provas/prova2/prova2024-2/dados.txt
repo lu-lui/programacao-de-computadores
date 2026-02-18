@@ -1,0 +1,35 @@
+Lagarta-do-cartucho 
+Spodoptera frugiperda 
+Milho, trigo, pastagens 
+10
+25
+30
+Chuva moderada e alta umidade favorecem a eclosão e sobrevivência. Condições ideais
+Lagarta Helicoverpa
+Helicoverpa armigera
+Soja, feijão, algodão, hortaliças
+14
+23
+28
+Precipitação moderada; excesso de chuva pode reduzir sobrevivência.
+Percevejo-marrom
+Euschistus heros
+Soja
+28
+22
+28
+Baixa a moderada (prefere tempo mais seco).
+Percevejo-barriga-verde
+Dichelops melacanthus
+Soja, milho
+14
+22
+28
+Baixa a moderada (excesso de chuva pode dificultar o desenvolvimento).
+Mosca-das-frutas-sul-americana
+Anastrepha fraterculus
+Pomares de maçã, pêssego, ameixa
+7
+20
+30
+Umidade alta e chuvas moderadas favorecem picos populacionais.
