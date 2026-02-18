@@ -1,0 +1,12 @@
+
+Thornfree;Amora;600;800
+Navaho;Amora;200;300
+Bing;Cereja;1000;1200
+Stella;Cereja;400;600
+Stanley;Ameixa;700;1000
+Santa Rosa;Ameixa;250;400
+Barlett;Pera;800;1500
+Hood;Pera;300;600
+Redhaven;Pêssego;700;1000
+Tropic Beauty;Pêssego;250;500
+Fuji;Maçã;1000;1500Gala;Maçã;500;800
