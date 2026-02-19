@@ -56,7 +56,7 @@ void carrega(coordenada *q1, coordenada *q2, coordenada *q3, coordenada *q4){
             break;
         }
 
-        novo->prox = NULL;
+        novo->prox = NULL; //aponta para o fim da lista
 
         if(novo->x > 0 && novo->y > 0)
             p = q1;
@@ -74,7 +74,7 @@ void carrega(coordenada *q1, coordenada *q2, coordenada *q3, coordenada *q4){
     while (p->prox != NULL)
         p = p->prox; //leva o ponteiro até o fim da lista
 
-    p->prox = novo;
+        p->prox = novo; //o que era o ultimo elemento antigamente agora vai apontar para o novo elemento que foi inserido no final
     }
 
     fclose(arquivo);
