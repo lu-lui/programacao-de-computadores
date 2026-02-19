@@ -1,7 +1,7 @@
-
 Barlett;Pera;800;1500
 Bing;Cereja;1000;1200
 Fuji;Maçã;1000;1500
+Gala;Maçã;500;800
 Hood;Pera;300;600
 Navaho;Amora;200;300
 Redhaven;Pêssego;700;1000
@@ -9,4 +9,4 @@ Santa Rosa;Ameixa;250;400
 Stanley;Ameixa;700;1000
 Stella;Cereja;400;600
 Thornfree;Amora;600;800
-Tropic Beauty;Pêssego;250;500Gala;Maçã;500;800
+Tropic Beauty;Pêssego;250;500

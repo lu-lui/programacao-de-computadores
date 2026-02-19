@@ -56,7 +56,7 @@ void carrega(struct lfrutas *lista){
         if (novo == NULL) 
             break;
 
-        if(fscanf(arquivo, "%99[^;];%99[^;];%d;%d", novo->nome, novo->tipo, &novo->horas_frio_min, &novo->horas_frio_max) != 4){
+        if(fscanf(arquivo, " %99[^;];%99[^;];%d;%d", novo->nome, novo->tipo, &novo->horas_frio_min, &novo->horas_frio_max) != 4){
             free(novo);
             break;
         }
@@ -69,8 +69,8 @@ void carrega(struct lfrutas *lista){
             atual = atual->prox;
         }
         
-        ant->prox = novo;
-        novo->prox = atual;    
+        novo->prox = atual;  
+        ant->prox = novo;  
     }
     fclose(arquivo);
 }
@@ -82,7 +82,7 @@ void salva(struct lfrutas *lista){
     arquivo = fopen("saida.txt", "w");
 
     for (p = lista->prox; p != NULL; p = p->prox)
-        fprintf(arquivo, "%s;%s;%d;%d", p->nome, p->tipo, p->horas_frio_min, p->horas_frio_max);
+        fprintf(arquivo, "%s;%s;%d;%d\n", p->nome, p->tipo, p->horas_frio_min, p->horas_frio_max);
     
     fclose(arquivo);
 }
