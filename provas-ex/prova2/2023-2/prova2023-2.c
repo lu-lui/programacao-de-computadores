@@ -44,13 +44,13 @@ alfabeto *cria(){
 
 void carrega(alfabeto *vogais, alfabeto *consoantes){
     FILE *arquivo;
-    alfabeto *novo, *p; 
+    alfabeto *novo, *atual, *anterior; 
 
     arquivo = fopen("entrada.txt", "r");
-        if(arquivo == NULL){
-            printf("Erro ao abrir arquivo\n");
-            return;
-}
+    if(arquivo == NULL){
+        printf("Erro ao abrir arquivo\n");
+        return;
+    }
 
     while (1){
         novo = (alfabeto *)malloc(sizeof(alfabeto));
@@ -62,18 +62,30 @@ void carrega(alfabeto *vogais, alfabeto *consoantes){
             break;
         }
     
-
-        novo->prox = NULL;
             
-        if(novo->letra == 'A' || novo->letra == 'E'|| novo->letra == 'I' || novo->letra == 'O' || novo->letra == 'U'){
-           p = vogais;
-        } else p = consoantes;
-        
-        while (p->prox != NULL){
-            p = p->prox;
-        }
-        p->prox = novo;
+        if(novo->letra == 'A' || novo->letra == 'E'|| novo->letra == 'I' || novo->letra == 'O' || novo->letra == 'U'){  
+            anterior = vogais;
+            atual = vogais->prox;
 
+            while (atual != NULL && atual->letra < novo->letra){
+                anterior = atual;
+                atual = atual->prox;
+            }
+
+            novo->prox = atual; //vai apontar p nulo
+            anterior->prox = novo;
+        } else {
+            anterior = consoantes;
+            atual = consoantes->prox;
+
+            while (atual != NULL && atual->letra < novo->letra){
+                anterior = atual;
+                atual = atual->prox;
+            }
+
+            novo->prox = atual; //vai apontar p nulo
+            anterior->prox = novo;
+        }
     }
 
     fclose(arquivo);
