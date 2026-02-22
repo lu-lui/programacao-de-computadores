@@ -18,7 +18,7 @@ struct tarefas{
     int prioridade;
     int custo;
     struct tarefas *prox;
-} ;
+};
 
 typedef struct tarefas tarefa;
 
@@ -48,14 +48,13 @@ void carrega(tarefa *lista){
     FILE *arquivo;
     tarefa *nova;
 
-    fopen("entrada.txt", "r");
+    arquivo = fopen("entrada.txt", "r");
     if (arquivo == NULL)
         printf("Erro de abertura do arquivo/n");
     
-
     while (1){
         nova = (tarefa *)malloc(sizeof(tarefa));
-        if(nova = NULL)
+        if (nova == NULL)
             break;
     
         if(fscanf(arquivo, "%d%d", &nova->prioridade, &nova->custo)!=2){
@@ -63,10 +62,10 @@ void carrega(tarefa *lista){
             break;
         }
 
-    while (nova->prox != NULL && lista->prioridade < nova->prioridade){
+   
         nova->prox = lista->prox;
         lista->prox = nova; //insere no inicio? da lista
-    }
+    
 
 }
     fclose(arquivo);
@@ -76,7 +75,7 @@ void salva(tarefa *lista){
     FILE *arquivo;
     tarefa *p;
     
-    fopen("saida.txt", "w");
+    arquivo = fopen("saida.txt", "w");
 
     for (p = lista->prox; p != NULL; p = p->prox)
         fprintf(arquivo, "%d %d\n", p->prioridade, p->custo);

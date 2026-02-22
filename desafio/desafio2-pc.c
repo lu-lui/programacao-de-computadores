@@ -78,8 +78,7 @@ void carregar_catalogo(Livro *lista){
         novo = malloc(sizeof(Livro));
         if (novo == NULL) break;
 
-        if (fscanf(arquivo, "%79[^|]|%49[^|]|%19[^|]|%d\n",
-                   novo->titulo, novo->autor, novo->codigo, &novo->ano) != 4){
+        if (fscanf(arquivo, "%79[^|]|%49[^|]|%19[^|]|%d\n", novo->titulo, novo->autor, novo->codigo, &novo->ano) != 4){
             free(novo);
             break;
         }
