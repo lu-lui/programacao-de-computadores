@@ -10,3 +10,76 @@ O que será avaliado?
 3. A alocação de cada célula nova (valor: 1 ponto)
 4. A inserção na lista na ordem apropriada (valor: 3 pontos)
 5. A gravação dos valores no arquivo (valor: 2 pontos)*/
+
+#include <stdio.h>
+#include <stdlib.h>
+
+struct tarefas{
+    int prioridade;
+    int custo;
+    struct tarefas *prox;
+} ;
+
+typedef struct tarefas tarefa;
+
+tarefa *cria(void);
+void carrega(tarefa *lista);
+void salva(tarefa *lista);
+
+int main(){
+    tarefa *lista;
+    lista = cria();
+    carrega(lista);
+    salva(lista);
+
+    return 0;
+}
+
+tarefa *cria(void){
+    tarefa *lista;
+
+    lista = (tarefa *)malloc(sizeof(tarefa));
+    lista->prox = NULL;
+
+    return lista;
+}
+
+void carrega(tarefa *lista){
+    FILE *arquivo;
+    tarefa *nova;
+
+    fopen("entrada.txt", "r");
+    if (arquivo == NULL)
+        printf("Erro de abertura do arquivo/n");
+    
+
+    while (1){
+        nova = (tarefa *)malloc(sizeof(tarefa));
+        if(nova = NULL)
+            break;
+    
+        if(fscanf(arquivo, "%d%d", &nova->prioridade, &nova->custo)!=2){
+            free(nova);
+            break;
+        }
+
+    while (nova->prox != NULL && lista->prioridade < nova->prioridade){
+        nova->prox = lista->prox;
+        lista->prox = nova; //insere no inicio? da lista
+    }
+
+}
+    fclose(arquivo);
+}
+
+void salva(tarefa *lista){
+    FILE *arquivo;
+    tarefa *p;
+    
+    fopen("saida.txt", "w");
+
+    for (p = lista->prox; p != NULL; p = p->prox)
+        fprintf(arquivo, "%d %d\n", p->prioridade, p->custo);
+    
+    fclose(arquivo);
+}
