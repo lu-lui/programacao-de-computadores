@@ -46,7 +46,7 @@ tarefa *cria(void){
 
 void carrega(tarefa *lista){
     FILE *arquivo;
-    tarefa *nova;
+    tarefa *nova, *anterior, *atual;
 
     arquivo = fopen("entrada.txt", "r");
     if (arquivo == NULL)
@@ -62,11 +62,17 @@ void carrega(tarefa *lista){
             break;
         }
 
-   
-        nova->prox = lista->prox;
-        lista->prox = nova; //insere no inicio? da lista
-    
+        anterior = lista;
+        atual = lista->prox;
 
+        while(atual != NULL && atual->prioridade < nova->prioridade){
+            anterior = atual;
+            atual = atual->prox;
+        }
+
+        anterior->prox = nova;
+        nova->prox = atual;
+   
 }
     fclose(arquivo);
 }
