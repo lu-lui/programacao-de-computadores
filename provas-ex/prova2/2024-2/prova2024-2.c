@@ -19,6 +19,8 @@ Observe o código a seguir:*/
 
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
+
 struct pragas {
     char nome_popular[200];
     char nome_cientifico[200];
@@ -40,4 +42,50 @@ int main() {
     carrega(lista);
     imprime(lista);
     return 0;
+}
+
+struct pragas *cria(void){
+    struct pragas *lista;
+
+    lista = (struct pragas *)malloc(sizeof(struct pragas));
+    lista->prox = NULL;
+
+    return lista;
+}
+
+void imprime(struct pragas *lista){
+    struct pragas *novo;
+
+    for(novo = lista->prox; novo != NULL; novo = novo->prox);
+        printf("%s\n%s\n%s\n%d\n%d\n%d\n%s\n", novo->nome_popular, novo->nome_cientifico, novo->culturas, novo->quantidade, novo->temperatura_min, novo->temperatura_max, novo->condicoes);
+    
+}
+
+void carrega(struct pragas *lista){
+    struct pragas *novo;
+    FILE *arquivo;
+
+    arquivo = fopen("dados.txt", "r");
+    if (arquivo == NULL){
+        printf("Erro de abertura do arquivo\n");
+        return;
+    }
+
+    while(1){
+        novo = (struct pragas *)malloc(sizeof(struct pragas));
+        if(novo == NULL){
+            break;
+        }
+
+        if(fscanf(arquivo, " %199[^\n]\n%199[^\n]\n%199[^\n]\n%d\n%d\n%d\n%199[^\n]\n", novo->nome_popular, novo->nome_cientifico, novo->culturas, &novo->quantidade, &novo->temperatura_min, &novo->temperatura_max, novo->condicoes) != 7){
+            free(novo);
+            break;
+        }
+
+        novo->prox = lista->prox;
+        lista->prox = novo;
+        
+    }
+
+    fclose(arquivo);
 }
