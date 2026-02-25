@@ -65,7 +65,7 @@ void carrega(tarefa *lista){
         anterior = lista;
         atual = lista->prox;
 
-        while(atual != NULL && atual->prioridade < nova->prioridade){
+        while((atual != NULL && atual->prioridade < nova->prioridade) || (atual != NULL && atual->prioridade == nova->prioridade && atual->custo < nova->custo)){
             anterior = atual;
             atual = atual->prox;
         }
