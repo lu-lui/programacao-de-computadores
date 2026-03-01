@@ -12,7 +12,7 @@ int main(){
         fgets(frase, sizeof(frase), stdin);
         espaco=0;
 
-        for (int i = 0; i < strlen(frase)-1; i++){
+        for (long unsigned int i = 0; i < strlen(frase)-1; i++){
             if (frase[i] == ' ')
                 espaco++;
         }
