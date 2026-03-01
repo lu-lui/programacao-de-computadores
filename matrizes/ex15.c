@@ -17,33 +17,32 @@ int main(){
     printf("Preencha a matriz: \n");
     for (int l = 0; l < L; l++){
         for (int c = 0; c < C; c++){
-            printf("Linha %d e Coluna %d; ", l+1, c+1);
+            printf("Linha %d e Coluna %d: ", l+1, c+1);
             scanf("%d", &M[l][c]);
         }
     }
     
-    
-    /*for (int l = 0; l < L; l++){
+    printf("Matriz digitada: \n");
+    for (int l = 0; l < L; l++){
         for (int c = 0; c < C; c++){
             printf("%d ", M[l][c]);
         }
         printf("\n");
-    }*/
-
-    for (int c = 0; c < L; c++){
-        for (int l = 0; l < C; l++){
-            MT[l][c] = M[l][c];
-        }
-        
     }
-    
 
     for (int c = 0; c < C; c++){
         for (int l = 0; l < L; l++){
-            printf("%d ", MT[L][C]);
+            MT[l][c] = M[l][c];
+        }   
+    }
+    
+    printf("Matriz transposta: \n");
+    for (int c = 0; c < C; c++){
+        for (int l = 0; l < L; l++){
+            printf("%d ", MT[l][c]);
         }
         printf("\n");
     }
     
-
+    return 0;
 }
