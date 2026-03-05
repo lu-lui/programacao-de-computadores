@@ -5,7 +5,7 @@
 
 int main(){
     char palavra[30], inversa[30];
-    int c=0, j, k;
+    int j, k;
 
     for (int i = 1; i <= 10; i++){
         printf("Palavra %d: ", i);
