@@ -71,3 +71,19 @@ void imprime (celula * ini)
     for(p = ini->prox; p != NULL; p = p->prox)
         printf("%d\n", p->conteudo);
 }
+
+/*
+Observe o código acima e marque se a afirmação é verdadeira ou falsa:
+
+(V) A função insere insere um elemento no final da lista numa_lista.	
+ 
+(F) Compila mas não executa.
+ 
+(F) A função remove remove um elemento do início da lista numa_lista.
+
+(F) A função insere insere um elemento no início da lista numa_lista.
+
+(V) A função remove remove um elemento do final da lista numa_lista.
+
+(F) Não compila.
+*/

@@ -36,3 +36,17 @@ void g (int * v, int n, int * menor, int * maior){
             *menor=v[i];
     }
 }
+
+/*
+Observe o programa acima e marque a opção que julgar correta:
+
+( ) O programa não compila, pois há erro na linha 23.
+
+(x) O programa compila sem advertências, executa e imprime o menor e o maior valor armazenado no vetor.
+
+( ) O programa não compila, pois há erro nas linhas 19 e 20.
+
+( ) O programa não compila, pois há erros nas linhas 16 e 28.
+
+( ) O programa não compila, pois há erro na linha 25.
+*/
