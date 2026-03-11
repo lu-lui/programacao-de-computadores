@@ -18,10 +18,10 @@ int main(){
 
     for (int i = 0; i < TAM; i++){
         printf("Ponto central %d: \nX: ", i+1);
-        scanf("%lf", &info[i].centro_X);
+        scanf("%d", &info[i].centro_X);
 
         printf("Y: ");
-        scanf("%lf", &info[i].centro_Y);
+        scanf("%d", &info[i].centro_Y);
 
         printf("Raio %d: ", i+1);
         scanf("%lf", &info[i].raio);
