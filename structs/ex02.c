@@ -3,7 +3,8 @@
 #include <stdio.h>
 
 typedef struct circulo{
-    double centro;
+    int centro_X;
+    int centro_Y;
     double raio;
 }circulo;
 
@@ -16,15 +17,18 @@ int main(){
     circulo info[TAM];
 
     for (int i = 0; i < TAM; i++){
-        printf("Ponto central %d: ", i+1);
-        scanf("%lf", &info[i].centro);
+        printf("Ponto central %d: \nX: ", i+1);
+        scanf("%lf", &info[i].centro_X);
+
+        printf("Y: ");
+        scanf("%lf", &info[i].centro_Y);
 
         printf("Raio %d: ", i+1);
         scanf("%lf", &info[i].raio);
     }
 
     for (int i = 0; i < TAM; i++){
-        printf("\tCIRCULO %d \nPonto central: %.2lf\n", i+1, info[i].centro);
+        printf("\tCIRCULO %d \nPonto central: (%d, %d)\n", i+1, info[i].centro_X, info[i].centro_Y);
         printf("Raio: %.2lf\n", info[i].raio);
         printf("Área: %.2lf\n", 3.14 * info[i].raio * info[i].raio);
         printf("Comprimento: %.2lf\n", 2 * 3.14 * info[i].raio);  

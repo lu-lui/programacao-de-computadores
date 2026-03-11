@@ -12,19 +12,19 @@ typedef struct retangulo{
 int main(){
     retangulo ponto, canto;
 
-    canto.inf_esq_X = -10;
-    canto.inf_esq_Y = -10;
-    canto.sup_dir_X = -10;
-    canto.sup_dir_Y = -10;
+    canto.inf_esq_X = 0;
+    canto.inf_esq_Y = 0;
+    canto.sup_dir_X = 0;
+    canto.sup_dir_Y = 0;
 
-    printf("Digite os pontos presentes no plano: \n(Digite o ponto(-10, -10) para encerrar a leitura)\n");
+    printf("Digite os pontos presentes no plano: \n(Digite o ponto(0, 0) para encerrar a leitura)\n");
    
     while(1){
         printf("Ponto superior-direito: \nX: ");
         scanf("%d", &ponto.sup_dir_X);
         printf("Y: ");
         scanf("%d", &ponto.sup_dir_Y);
-        if (ponto.sup_dir_X == -10 && ponto.sup_dir_Y == -10)
+        if (ponto.sup_dir_X == 0 && ponto.sup_dir_Y == 0)
             break;
 
         if (ponto.sup_dir_X >= canto.sup_dir_X && ponto.sup_dir_Y >= canto.sup_dir_Y){
@@ -36,7 +36,7 @@ int main(){
         scanf("%d", &ponto.inf_esq_X);
         printf("Y: ");
         scanf("%d", &ponto.inf_esq_Y);
-        if (ponto.inf_esq_X == -10 && ponto.inf_esq_Y == -10)
+        if (ponto.inf_esq_X == 0 && ponto.inf_esq_Y == 0)
             break;
 
         if (ponto.inf_esq_X <= canto.inf_esq_X && ponto.inf_esq_Y <= canto.inf_esq_Y){
