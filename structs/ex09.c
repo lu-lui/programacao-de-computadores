@@ -14,3 +14,22 @@ Crie um algoritmo que permita preencher as informações deste acervo de CDs e f
     • Buscar por Gênero 
     • Buscar por Título de Faixa 
     • Listar (imprimir) todo o acervo (Artista, Álbum e Faixas) */
+
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+
+typedef struct acervo{
+    char 
+    struct acervo *prox;
+}cd;
+
+cd *cria(void);
+void inserir(*lista);
+void buscar_artista(*lista);
+void buscar_album(*lista);
+void buscar_genero(*lista);
+void buscar_titulo(*lista);
+void listar_acervo(*lista);
+void exportar_acervo(*lista); //extra
+    
