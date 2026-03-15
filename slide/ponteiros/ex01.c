@@ -12,8 +12,8 @@ int main(){
 }
 /*
 Qual é o valor das seguintes expressões ?
-• p = &i
-• *p - *q
-• **&p
-• 3* - *p/(*q)+7 
+• p = &i            R: 3
+• *p - *q           R: -2
+• **&p              R: 3
+• 3* - *p/(*q)+7    R: 6
 */
